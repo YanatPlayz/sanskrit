@@ -1,0 +1,5 @@
+data/
+code/__pycache__/
+code/sanskrit-env/
+models/
+.DS_Store
