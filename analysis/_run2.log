@@ -1,0 +1,71 @@
+=== DRIFT on word2vec ===
+Loading models from ../models/w2v-sandhi ...
+Shared vocab across all 4 eras: 1,345 words
+Procrustes anchors: 767 (min-count>=10)
+Wrote ../analysis/w2v-sandhi/drift_scores.csv (1345 words)
+
+Frequency control (robust set, n=767): Spearman(log total_freq, drift) = 0.285 (p=9.48e-16)
+Cross-metric Spearman (full span, robust set):
+  second-order vs jaccard : -0.018
+  second-order vs procrustes: 0.676
+  jaccard vs procrustes     : 0.091
+
+Top 20 movers (second-order, full span, min_freq>=10):
+  maRqala        so=0.453  jac=0.980  proc=0.724  minf=10
+  sAma           so=0.130  jac=1.000  proc=0.515  minf=80
+  adya           so=0.127  jac=1.000  proc=0.438  minf=45
+  gOH            so=0.124  jac=0.980  proc=0.350  minf=11
+  Atmani         so=0.117  jac=0.980  proc=0.620  minf=34
+  vIryam         so=0.116  jac=0.980  proc=0.560  minf=15
+  asyAm          so=0.103  jac=0.980  proc=0.411  minf=27
+  etayA          so=0.096  jac=1.000  proc=0.445  minf=12
+  karoti         so=0.095  jac=1.000  proc=0.320  minf=58
+  anna           so=0.094  jac=0.913  proc=0.298  minf=165
+  vat            so=0.094  jac=1.000  proc=0.379  minf=102
+  bfhat          so=0.093  jac=0.980  proc=0.460  minf=34
+  tejaH          so=0.091  jac=1.000  proc=0.358  minf=45
+  asi            so=0.091  jac=1.000  proc=0.203  minf=209
+  ime            so=0.091  jac=1.000  proc=0.288  minf=45
+  jyotiH         so=0.088  jac=0.936  proc=0.237  minf=52
+  svar           so=0.087  jac=1.000  proc=0.431  minf=24
+  u              so=0.087  jac=1.000  proc=0.286  minf=95
+  tABiH          so=0.085  jac=1.000  proc=0.472  minf=24
+  ekA            so=0.085  jac=1.000  proc=0.406  minf=41
+
+Wrote ../analysis/w2v-sandhi/case_studies.txt, ../analysis/w2v-sandhi/top_movers.csv, ../analysis/w2v-sandhi/most_stable.csv
+=== DRIFT on fasttext 3-6 ===
+Loading models from ../models/ft-sandhi-3-6 ...
+Shared vocab across all 4 eras: 1,345 words
+Procrustes anchors: 767 (min-count>=10)
+Wrote ../analysis/ft-sandhi-3-6/drift_scores.csv (1345 words)
+
+Frequency control (robust set, n=767): Spearman(log total_freq, drift) = 0.124 (p=5.71e-04)
+Cross-metric Spearman (full span, robust set):
+  second-order vs jaccard : 0.548
+  second-order vs procrustes: 0.750
+  jaccard vs procrustes     : 0.436
+
+Top 20 movers (second-order, full span, min_freq>=10):
+  kratu          so=0.161  jac=0.958  proc=0.540  minf=14
+  vat            so=0.141  jac=0.980  proc=0.527  minf=102
+  bfhat          so=0.134  jac=0.958  proc=0.526  minf=34
+  u              so=0.116  jac=1.000  proc=0.396  minf=95
+  ha             so=0.106  jac=0.913  proc=0.520  minf=209
+  svar           so=0.099  jac=0.958  proc=0.264  minf=24
+  sAma           so=0.098  jac=0.980  proc=0.401  minf=80
+  ime            so=0.097  jac=0.980  proc=0.358  minf=45
+  hi             so=0.093  jac=0.980  proc=0.373  minf=725
+  viSva          so=0.093  jac=0.913  proc=0.259  minf=29
+  viSve          so=0.087  jac=0.936  proc=0.261  minf=11
+  para           so=0.086  jac=0.936  proc=0.318  minf=12
+  vAc            so=0.085  jac=0.958  proc=0.501  minf=108
+  Atmani         so=0.084  jac=0.980  proc=0.463  minf=34
+  vasu           so=0.080  jac=0.913  proc=0.368  minf=22
+  tvA            so=0.080  jac=1.000  proc=0.386  minf=49
+  mayA           so=0.079  jac=0.889  proc=0.349  minf=17
+  indra          so=0.079  jac=0.913  proc=0.313  minf=36
+  viSvam         so=0.079  jac=0.980  proc=0.204  minf=12
+  soma           so=0.075  jac=0.958  proc=0.290  minf=34
+
+Wrote ../analysis/ft-sandhi-3-6/case_studies.txt, ../analysis/ft-sandhi-3-6/top_movers.csv, ../analysis/ft-sandhi-3-6/most_stable.csv
+=== ALL DONE ===

@@ -1,0 +1,190 @@
+% =====================================================================
+%  IMPORTANT: compile with XeLaTeX or LuaLaTeX (not pdfLaTeX).
+%  IAST diacritics (ā ī ū ṛ ṃ ḥ ṣ ṭ ḍ ṇ ś ṅ ñ) need a Unicode engine.
+%  In Overleaf: Menu -> Compiler -> XeLaTeX.
+% =====================================================================
+\documentclass[11pt]{article}
+
+% Change "review" to "final" for the camera-ready, or "preprint" for a
+% non-anonymous version with page numbers.
+\usepackage[review]{acl}
+
+\usepackage{latexsym}
+
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{times}
+\else
+  % XeLaTeX / LuaLaTeX: a Times-like Unicode font with IAST coverage
+  \usepackage{fontspec}
+  \setmainfont{TeX Gyre Termes}
+\fi
+
+\usepackage{microtype}
+\usepackage{inconsolata}
+\usepackage{graphicx}
+\usepackage{booktabs}
+
+\title{A Computational Approach to Measuring Semantic Change\\ in Sanskrit Literature}
+
+\author{First Author \\
+  Affiliation \\
+  \texttt{email@domain} \\\And
+  Second Author \\
+  Affiliation \\
+  \texttt{email@domain} \\}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We present a computational study of lexical semantic change in Sanskrit across four canonical periods of its literature---Vedic, Upani\d{s}adic, Epic, and S\=utra/\'S\=astra---spanning roughly two millennia. We assemble a diachronic corpus of about 2.7M tokens from public-domain digital editions and process it with a neural pipeline that performs byte-level sandhi splitting and lemmatization. We train per-period embeddings, align them with orthogonal Procrustes, and quantify change with an alignment-free local-neighborhood measure and a Procrustes cosine measure. We compare subword (FastText) and non-subword (word2vec) models and find that subword models' nearest neighbors are dominated by \emph{orthographic} rather than semantic similarity, making word2vec preferable for interpretable change analysis; we also find that hard nearest-neighbor (Jaccard) overlap saturates on these small corpora while graded second-order similarity remains informative. Case studies of culturally central terms---\textit{r\=ajan} `king', \textit{dharma}, \textit{deva}, \textit{agni}---recover historically attested trajectories, e.g.\ \textit{r\=ajan} drifting from sacral/ritual lordship toward statecraft and political intrigue. We release our code and preprocessing pipeline.
+% TODO: tighten to ~150 words once results are final.
+\end{abstract}
+
+\section{Introduction}
+
+Sanskrit has a continuous written tradition of more than three thousand years, conventionally divided into successive literary strata that differ in genre, register, and worldview. Across these strata, the meanings and associations of core vocabulary shift: a term such as \textit{dharma} carries different connotations in Vedic ritual hymns than in the legal-ethical literature of the S\=utras. Quantifying such shifts computationally is of interest both to historical linguistics and to digital philology, but Sanskrit poses obstacles rarely faced together in prior diachronic NLP: pervasive \textit{sandhi} (phonological fusion across word boundaries), rich inflectional and compounding morphology, uneven corpus sizes across periods, and substantial uncertainty in the dating of individual texts \citep{hellwig2020treebank}.
+
+We ask: \emph{how do the meanings of core Sanskrit lexical items shift across the major periods of the literature, and how can these shifts be measured with diachronic word embeddings?} Diachronic embeddings are a standard tool for this question in better-resourced languages \citep{hamilton2016diachronic, kutuzov2018survey, schlechtweg2020semeval}, but they have been considered difficult to apply to Sanskrit because the early (Vedic) subcorpus is small and the historical record is uncertain. We take a deliberately pragmatic stance: rather than seeking perfect linguistic normalization, we prioritize a \emph{consistent, reproducible} pipeline and ask what reliable signal can be extracted from it.
+
+Our contributions are:
+\begin{enumerate}
+  \item A four-period diachronic Sanskrit corpus (${\sim}2.7$M tokens) and a reproducible preprocessing pipeline that uses a byte-level neural model \citep{nehrdich2024byt5} for sandhi splitting and lemmatization (Section~\ref{sec:corpus}--\ref{sec:method}).
+  \item To our knowledge, the first application of diachronic word embeddings to measure \emph{lexical}-semantic change across the major periods of Sanskrit, complementing prior diachronic work that targets syntax and text dating \citep{hellwig2020treebank}.
+  \item A methodological finding: subword (FastText) embeddings yield nearest neighbors dominated by orthographic similarity, so word2vec is preferable for interpretable change analysis; and hard nearest-neighbor overlap (Jaccard) saturates on small diachronic corpora, whereas graded second-order similarity is informative.
+  \item Case studies (\textit{r\=ajan}, \textit{dharma}, \textit{deva}, \textit{agni}) that recover historically attested semantic trajectories.
+\end{enumerate}
+We release all code.\footnote{Repository URL withheld for anonymous review.}
+
+\section{Related Work}
+
+\paragraph{Diachronic word embeddings.}
+\citet{hamilton2016diachronic} establish the dominant paradigm: train embeddings per time bin, align successive spaces with orthogonal Procrustes, and measure change by cosine distance or by change in a word's local neighborhood; they report a ``law of conformity'' whereby frequent words change more slowly. \citet{kutuzov2018survey} survey the area, and the SemEval-2020 Task~1 shared task \citep{schlechtweg2020semeval} standardizes evaluation of lexical semantic change detection. We adopt this paradigm and, following the observation that alignment introduces noise, foreground an alignment-free second-order (local-neighborhood) measure.
+
+\paragraph{Sanskrit NLP.}
+\citet{sandhan2021evaluating} systematically evaluate static and contextual embeddings for Sanskrit and highlight the high out-of-vocabulary rates caused by sandhi and morphology, recommending subword or subword-aware tokenization. \citet{nehrdich2024byt5} introduce ByT5-Sanskrit, a byte-level multitask model that achieves strong results on sandhi splitting, lemmatization, and morphosyntactic tagging, and is robust to material not covered by lexical resources; we use it as a preprocessing engine. Resources such as the Digital Corpus of Sanskrit \citep{hellwig2010dcs} and the Vedic Treebank \citep{hellwig2020treebank} underpin much of this work. To our knowledge, lexical-semantic \emph{change} across Sanskrit's periods has not previously been modeled with diachronic embeddings.
+
+\section{Corpus}
+\label{sec:corpus}
+
+We define four time bins corresponding to standard literary-historical strata and assign canonical texts to each (Table~\ref{tab:corpus}). Texts are drawn from public-domain digital editions in GRETIL\footnote{Göttingen Register of Electronic Texts in Indian Languages.} and complementary cleaned editions. We use literary-era bins rather than fixed century windows because precise dates are unavailable for most works and because era membership is comparatively stable in the philological literature.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lrrr}
+\toprule
+\textbf{Period (approx.)} & \textbf{Works} & \textbf{Tokens} & \textbf{Types} \\
+\midrule
+Vedic (1500--500 BCE)       & 6 & 417K  & 10{,}783 \\
+Upani\d{s}adic (700--200 BCE) & 7 & 228K  & 5{,}493 \\
+Epic (400 BCE--400 CE)      & 2 & 1.78M & 30{,}103 \\
+S\=utra (200 BCE--500 CE)   & 9 & 290K  & 8{,}591 \\
+\midrule
+Total                       & 24 & ${\sim}2.7$M & --- \\
+\bottomrule
+\end{tabular}
+\caption{Diachronic corpus. Tokens are counted after sandhi segmentation; types use a minimum count of~5. % TODO: confirm exact token counts for camera-ready.}
+\label{tab:corpus}
+\end{table}
+
+Two properties of the corpus require care. First, it is \emph{strongly imbalanced}: the Epic period (dominated by the Mah\=abh\=arata) is roughly an order of magnitude larger than the others. Because both embedding quality and apparent change scale with corpus size, we control for this in analysis (Section~\ref{sec:method}) and discuss it as a limitation. Second, several Upani\d{s}adic editions bundle later commentary (\textit{bh\=a\d{s}ya}) with the base text; because commentary can postdate the base text by a millennium, it constitutes period contamination, which we address in preprocessing and revisit in Limitations.
+% TODO: report final commentary-stripped ("v2") Upanisadic counts.
+
+\section{Method}
+\label{sec:method}
+
+\subsection{Preprocessing pipeline}
+Each text passes through a fixed pipeline: (1) removal of editorial metadata, verse markers, and bracketed apparatus via regular expressions and manual checks; (2) transliteration to SLP1, a reversible ASCII encoding convenient for downstream tools, with Unicode NFC normalization; (3) segmentation into ${\le}350$-character chunks at whitespace boundaries to fit the context window of the neural analyzer; (4) \textbf{sandhi splitting} with ByT5-Sanskrit \citep{nehrdich2024byt5} in word-segmentation mode, restoring word boundaries hidden by phonological fusion; (5) a refinement pass that re-segments residual long compounds; and (6) optional \textbf{lemmatization} with the same model. Sandhi splitting is essential: without it, a single lexeme appears in many fused surface forms, fragmenting its distributional signal.
+
+\subsection{Embeddings}
+For each period we train independent embeddings with identical hyperparameters: skip-gram with negative sampling, dimension~300, window~5, minimum count~5, 10~negative samples, subsampling $10^{-4}$, 10~epochs, fixed seed \citep{mikolov2013distributed, rehurek2010gensim}. We compare \textbf{word2vec} (no subword information) with \textbf{FastText} \citep{bojanowski2017enriching} at several character $n$-gram ranges ($n\!\in\![2,6],[3,6],[6,12]$). All cells of this grid share one frozen configuration so that observed differences are attributable to the variable under study.
+
+\subsection{Alignment and change measures}
+Independently trained spaces are not directly comparable, so we align each period onto the Vedic space with orthogonal Procrustes \citep{hamilton2016diachronic}, fitting the rotation on ${\sim}\!770$ high-frequency anchor words shared by all periods. We restrict quantitative analysis to the 1{,}345 words present in every period, and report three measures of change for each word:
+\begin{itemize}
+  \item \textbf{Second-order (local-neighborhood) similarity} \citep{hamilton2016diachronic}: the cosine between a word's similarity profile to its neighbors in two periods. Alignment-free; our headline measure.
+  \item \textbf{Procrustes cosine}: cosine distance between the aligned vectors of a word in two periods.
+  \item \textbf{Nearest-neighbor Jaccard distance}: one minus the overlap of a word's top-$k$ neighbors across periods.
+\end{itemize}
+Following \citet{hamilton2016diachronic}, we examine the relationship between change and frequency.
+
+\section{Results}
+\label{sec:results}
+
+\subsection{Which model? Subword vs.\ word2vec}
+FastText's character $n$-grams cause near-identical vectors for orthographically similar forms, so its nearest neighbors are dominated by inflectional and rhyming variants rather than meaning (e.g.\ for \textit{dharma}: \textit{dharmam, dharma\d{n}\=a}; \textit{r\=aja} near \textit{r\=atri} `night', \textit{m\=atr\=a} `measure'). word2vec neighbors are, by contrast, semantically coherent (Section~\ref{sec:cases}). This is not merely cosmetic: it also distorts the metrics. Table~\ref{tab:metrics} shows that Jaccard overlap \emph{saturates} (top-$k$ sets share almost nothing across periods) for the semantically clean models, and that the only configuration where Jaccard agrees strongly with the other measures is the short-$n$-gram FastText---precisely because its orthographic neighbors are artificially stable across time. Second-order and Procrustes measures agree moderately ($\rho\!\approx\!0.7$) across configurations, including word2vec. We therefore adopt \textbf{word2vec as the primary model}, report second-order and Procrustes measures, and treat Jaccard as unreliable on corpora of this size.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Model} & \textbf{SO--Pr} & \textbf{SO--Jac} & \textbf{Jac--Pr} & \textbf{freq--$\Delta$} \\
+\midrule
+FastText (2--6)  & 0.72 & 0.82 & 0.64 & $+0.10$ \\
+FastText (3--6)  & 0.75 & 0.55 & 0.44 & $+0.12$ \\
+FastText (6--12) & 0.40 & 0.55 & 0.45 & $+0.01$ \\
+word2vec         & 0.68 & $-0.02$ & 0.09 & $+0.29$ \\
+\bottomrule
+\end{tabular}
+\caption{Spearman correlations among change measures (SO = second-order, Pr = Procrustes, Jac = Jaccard) and between change and log-frequency, on the 767-word robust set (min.\ count $\ge 10$ in every period). Jaccard decorrelates from the others except under short-$n$-gram FastText, where orthographic neighbors are spuriously stable.}
+\label{tab:metrics}
+\end{table}
+
+\subsection{Frequency and change}
+Across configurations we find a \emph{positive} correlation between frequency and change (Table~\ref{tab:metrics}; strongest for word2vec, $\rho=+0.29$), the opposite of Hamilton et al.'s law of conformity. We attribute this partly to our restriction to a shared, relatively high-frequency vocabulary and to genre-driven collocational shifts in common content words; we return to this in Limitations.
+
+\subsection{Case studies}
+\label{sec:cases}
+Table~\ref{tab:cases} shows word2vec nearest neighbors per period for \textit{r\=ajan} and \textit{dharma}. The trajectories are historically interpretable. \textit{R\=ajan} moves from a Vedic association with deities and sacral purity (\textit{deva}, \textit{soma}, \textit{agni}), through epic association with \emph{named} kings and their ministers, to a S\=utra association with statecraft and intrigue (\textit{\'satru} `enemy', \textit{pre\d{s}ayet} `should dispatch', \textit{atisa\d{m}dhatte} `outwits'). \textit{Dharma} moves from metaphysical and soteriological associations (\textit{sa\d{m}s\=ara}, \textit{mok\d{s}a}) toward a technical legal-\'s\=astric sense (\textit{\'s\=astra}, \textit{vidhi}/\textit{prati\d{s}edha} `injunction/prohibition', \textit{\=ac\=ara} `conduct'). \textit{Deva} comes, in the epics, to be defined relationally against an expanded mythological taxonomy (\textit{gandharva}, \textit{yak\d{s}a}, \textit{asura}, \textit{daitya}); \textit{agni} shifts from ritual context to fire/light imagery (\textit{vahni}, \textit{jvalana}, \textit{vai\'sv\=anara}) and then to sacrificial procedure (\textit{homa}, \textit{\=ahuti}).
+
+Notably, these qualitatively dramatic shifts coincide with \emph{small} second-order scores on the shared vocabulary (e.g.\ \textit{r\=ajan} $0.06$, \textit{agni} $0.03$): much of the reorganization involves period-specific neighbors (such as named kings) absent from the shared pool, so our quantitative measures are conservative and the qualitative neighbor analysis is complementary rather than redundant.
+
+\begin{table*}[t]
+\centering
+\small
+\begin{tabular}{p{1.6cm} p{12.2cm}}
+\toprule
+\multicolumn{2}{l}{\textbf{\textit{r\=ajan} `king' --- word2vec nearest neighbors}} \\
+\midrule
+Vedic & \textit{deva} (god), \textit{soma}, \textit{agni}, \textit{\'suci} (pure), \textit{vrata} (vow), \textit{pati} (lord) \\
+Upani\d{s}adic & \textit{br\=ahma\d{n}a}, \textit{agni}, \textit{brahmac\=arin}, \textit{soma} \\
+Epic & \textit{n\d{r}pati}, \textit{sah\=am\=atya} (with ministers), \textit{mah\={\i}p\=ala}, \textit{dil\={\i}pa}, \textit{dharmaputra}, \textit{kurur\=aja}, \textit{p\=a\d{n}\d{d}u} \\
+S\=utra & \textit{\'satru} (enemy), \textit{pre\d{s}ayet} (should dispatch), \textit{atisa\d{m}dhatte} (outwits), \textit{r\=ajya} (realm) \\
+\midrule
+\multicolumn{2}{l}{\textbf{\textit{dharma} --- word2vec nearest neighbors}} \\
+\midrule
+Upani\d{s}adic & \textit{adharma}, \textit{sa\d{m}s\=ara}, \textit{up\=ad\=ana}, \textit{\'sakti}, \textit{bhokt\d{r}} \\
+Epic & \textit{artha}, \textit{mok\d{s}a}, \textit{\=agama}, \textit{sm\d{r}timat} \\
+S\=utra & \textit{\'s\=astra}, \textit{vidhi}, \textit{prati\d{s}edha} (prohibition), \textit{nitya} (obligatory), \textit{\=ac\=ara} (conduct), \textit{sm\d{r}ti} \\
+\bottomrule
+\end{tabular}
+\caption{Representative period-wise nearest neighbors (word2vec, sandhi-split corpus). Glosses in parentheses. Vedic \textit{dharma} is omitted: it is rare (7 occurrences) and its neighbors are unreliable.}
+\label{tab:cases}
+\end{table*}
+
+% TODO: Figure 1 (drift vs. log-frequency scatter) and Figure 2 (trajectory plot for r\=ajan/dharma).
+% \begin{figure}[t]\includegraphics[width=\columnwidth]{drift_freq.pdf}\caption{...}\label{fig:freq}\end{figure}
+
+\section{Discussion}
+Two methodological lessons stand out. First, the choice between subword and non-subword embeddings is not neutral for \emph{semantic}-change analysis: subword models trade interpretability for out-of-vocabulary robustness, and for a morphologically rich language this trade hides meaning behind orthography. Second, evaluation measures must be chosen for the data regime: hard neighbor overlap is uninformative when corpora are small and neighborhoods churn, whereas graded measures degrade gracefully. Substantively, our case studies align with received philological narratives---e.g.\ the movement of kingship from a sacral to an administrative-strategic conception---suggesting that even modest, noisy corpora carry recoverable diachronic signal.
+
+\section*{Limitations}
+Our corpus is strongly imbalanced (the Epic period dominates), which inflates apparent change for that period despite size controls. The early (Vedic) and small (Upani\d{s}adic, S\=utra) bins yield noisy embeddings, and the Upani\d{s}adic bin in our current edition includes later commentary, biasing it toward post-classical usage; a commentary-stripped corpus is in preparation. % TODO: update once v2 corpus is run.
+We lack a large gold standard of attested Sanskrit semantic changes, so case studies are validated against the philological literature rather than a benchmark. Lemmatization can over-collapse distinct senses (e.g.\ \textit{veda} `knowledge'/`Veda' to the root \textit{vid}), and Procrustes alignment introduces noise. Finally, text dating is uncertain, so era boundaries are approximate.
+
+\section*{Acknowledgments}
+% Anonymous for review.
+
+\bibliography{custom}
+
+\appendix
+\section{Reproducibility}
+\label{sec:appendix}
+All embeddings use the frozen configuration of Section~\ref{sec:method}. Training and analysis scripts, the period corpora, and the exact hyperparameters are released in the repository. % TODO: add commit hash / archive DOI for camera-ready.
+
+\end{document}

@@ -1,0 +1,78 @@
+======================================================================
+Darma    (in-vocab: vedic, upanisadic, epics, sutras)
+  full-span drift: second-order=0.046  jaccard=0.958  procrustes=0.416
+  [vedic] (n=7)  SarmaRA, DaruRe, DarmaRA, Darman, DarmA, SarmaRi, DarmaRi, BUreH, Garma, rodasyoH, marmaRi, DaruRaṁ
+  [upanisadic] (n=194)  aDarma, Darmi, aDarmayoH, akfta, DarmAt, aDikfta, SIta, Darmakam, atIta, DarmEH, kfta, akarma
+  [epics] (n=3820)  DarmI, aDarma, DarmO, sadDarma, Darmam, Darmi, DarmyA, svaDarma, DarmasUnunA, DarmA, sahaDarma, Darme
+  [sutras] (n=234)  aDarma, vigraha, vikzepa, jYAta, vyakta, Boga, Arta, vikarma, vyADita, tattva, vfdDa, vfdDi
+======================================================================
+karma    (in-vocab: vedic, upanisadic, epics, sutras)
+  full-span drift: second-order=0.024  jaccard=0.889  procrustes=0.236
+  [vedic] (n=69)  akarma, vocAma, avocAma, BavAmi, fcIzama, vedAma, Garma, karRO, karmaRA, AjagAma, karomi, jagAma
+  [upanisadic] (n=835)  karmaRI, karmaRi, karmaRe, karmasu, karmaRoH, karmaRAm, karmaRA, karmI, akarma, karmaBiH, karmA, karmaByAm
+  [epics] (n=2011)  karman, karmaRoH, karmaRe, karmaRI, karmaRi, akarma, zawkarma, karmaRaH, karmaRA, karmA, karmasu, karmataH
+  [sutras] (n=596)  karmaRi, karmA, vikarma, kartf, kartfka, karmaRAm, Darma, karmARi, karmasu, vihAra, aDarma, karmaRA
+======================================================================
+Atman    (in-vocab: vedic, epics, sutras)
+  [vedic] (n=58)  Atmane, Atma, Atmani, AtmanA, upAsIta, kAmayeta, AtmanaH, upAste, evaMvida, Adriyeta, apAkrAman, Amayat
+  [upanisadic] —
+  [epics] (n=65)  Atmani, Atma, AtmanoH, Atmane, Atmake, AtmanA, AtmanaH, Atmaje, AtmA, Atmaja, AtmajO, AtmanAm
+  [sutras] (n=6)  AtmanA, upajapet, AtmavAn, pAdEH, pAdAn, aMSAn, sarzapAn, yEH, dvijAn, aMSEH, kzipet, Ayuz
+======================================================================
+fta    (in-vocab: vedic, epics, sutras)
+  [vedic] (n=75)  mfta, amftAH, Dfta, Gfta, amfta, devAH, yamAH, yaSAH, svAH, akfta, yahvAH, svaDAH
+  [upanisadic] —
+  [epics] (n=10)  Bfta, Gfta, DUta, kxpta, lupta, Dfta, tfpta, pIta, mfta, mita, aYcita, akfta
+  [sutras] (n=10)  mfta, Bfta, rAja, rAzwra, GAta, vIta, dUta, gIta, grAha, AsIta, awavI, hita
+======================================================================
+yajYa    (in-vocab: vedic, upanisadic, epics, sutras)
+  full-span drift: second-order=0.050  jaccard=0.780  procrustes=0.254
+  [vedic] (n=84)  yajYe, yajYAn, yaje, yajYAnAṁ, yajYEH, yajuH, yajYezu, yajYAt, yajYiye, yajYaH, yajYakratO, yajYaṁ
+  [upanisadic] (n=45)  yajeta, yajYAH, yajYopavIta, sADane, Pale, ezaRA, ezaRe, yajYe, uktyA, sADanEH, ezaRAyAH, strI
+  [epics] (n=517)  yajYam, yajYaH, yajYe, yaja, yajYAH, yajYasya, yajvA, mahAyajYa, yajuzA, yajYAn, yajYiyam, yajYAt
+  [sutras] (n=188)  yajYEH, yajA, yaje, brahmayajYa, prajApatim, prajApatiH, prajApati, prajApateH, yajYe, yajYena, yajamAnAH, yajate
+======================================================================
+deva    (in-vocab: vedic, upanisadic, epics, sutras)
+  full-span drift: second-order=0.021  jaccard=0.649  procrustes=0.087
+  [vedic] (n=740)  devf, devO, devi, devIṁ, devA, devAn, devayoH, devayum, devayuH, devyA, devatrA, devAm
+  [upanisadic] (n=183)  devEH, devatAyAH, devatAm, devO, devatAnAm, devatABiH, devatAsu, devatAH, devatAyAm, devatA, kftyAm, ekEkAm
+  [epics] (n=2238)  devadeva, devo, devaki, devadAru, devala, devane, devakI, devarzi, devadeveSa, devO, deve, devyO
+  [sutras] (n=202)  devatrA, devi, devI, devezu, devIH, deve, devyE, devatAm, devEH, devatA, devA, barhiH
+======================================================================
+brahman    (in-vocab: vedic, epics, sutras)
+  [vedic] (n=10)  brahmaRe, brahma, brahmacArI, brahmaRA, brahmaRi, brahmA, brahmaRas, brahmaRaspate, brahmaRAm, brahmacaryeRa, brahmavarcase, brahmavarcasAya
+  [upanisadic] —
+  [epics] (n=418)  brahmarze, brahmadeya, brahma, brahmatvam, brahmarzeH, brahmaRe, brahmarzi, brahmaGoza, brahmaRi, brahmataH, brahmaSiraH, brahmaRA
+  [sutras] (n=16)  brahmaRe, brahma, brahmaRA, brahmA, brahmaRaspatiH, bfhaspatim, tejasA, brahmacArI, bruvan, sumatim, yajasva, sTapatiH
+======================================================================
+asura    (in-vocab: vedic, upanisadic, epics)
+  [vedic] (n=52)  asurye, tvad, Asu, asurEH, asUn, vevizat, kzetra, asuH, aBUt, asmi, aGa, tvac
+  [upanisadic] (n=8)  SUdra, ugra, mAnuza, kzudra, gfhasTa, BikzA, tyAga, yAvajjIva, yAga, nadI, ezaRAyAH, rudra
+  [epics] (n=294)  sura, Asura, devAsura, asurO, uraga, asure, asuram, tripura, kiMnara, piSAca, asuraH, asurAH
+  [sutras] —
+======================================================================
+agni    (in-vocab: vedic, upanisadic, epics, sutras)
+  full-span drift: second-order=0.044  jaccard=0.718  procrustes=0.169
+  [vedic] (n=66)  agnizu, agninA, agnO, agnA, agnim, agnizwut, agnizwome, agnIn, agniṁ, agnizwomO, agnizwoma, agnizwomam
+  [upanisadic] (n=180)  yoni, AhutyoH, agnihotre, agneH, agne, agnihotra, vrIhi, dyu, dvArARi, kzudra, aBinizpadyante, rudra
+  [epics] (n=588)  agnI, agnO, agnIzoma, agnIzomO, agnim, agniH, agne, hutASa, agnikuRqAt, agnihotriRe, agnihotre, agnaye
+  [sutras] (n=291)  agnO, agninA, agnizu, agnA, agnIn, agneH, svizwakft, agnihotra, svizwakfte, svizwakftam, svizwakfti, agniBiH
+======================================================================
+rAjan    (in-vocab: vedic, upanisadic, epics)
+  [vedic] (n=87)  viDarman, Darman, rAjasu, rAjasi, rAja, BrAjan, rAje, rujan, fYjan, vivasvAn, rAjYI, janman
+  [upanisadic] (n=15)  mAtfmAn, abruvan, maGavan, pitfmAn, dadO, pfcCa, mAnI, fzaBa, jEvaliH, pfcCasi, daDre, pfcCAmi
+  [epics] (n=4800)  rAja, rAjA, rAjaDAnI, rAjani, rAj, rAje, rAjanya, rAjYi, rAjarze, rAjI, rAjanyAH, rAjYe
+  [sutras] —
+======================================================================
+rAjA    (in-vocab: vedic, upanisadic, epics, sutras)
+  full-span drift: second-order=0.050  jaccard=0.936  procrustes=0.272
+  [vedic] (n=251)  rAj, rAja, rAje, rAjYI, rAjAnO, rAjasu, rAjan, vESvAmitraH, janizwa, rAjani, rAjasi, viDartA
+  [upanisadic] (n=74)  rAja, rAjan, hastO, ganDarva, baBUvuH, sahasrA, arDa, mAtf, jEvaliH, ahoBiH, haviH, aRIyAn
+  [epics] (n=2947)  rAj, rAjaH, rAjI, rAja, rAje, rAjarziH, rAjyaH, rAjYi, rAjaDarmA, rAjan, rAjye, rAjaDAnI
+  [sutras] (n=201)  rAje, rAjYe, brUyuH, Satru, dAtf, Satrum, yAceta, amfta, rAjYA, mfta, rAja, SatruH
+======================================================================
+nfpa    (in-vocab: epics)
+  [vedic] —
+  [upanisadic] —
+  [epics] (n=1085)  nfpaH, nfpe, nfpam, nfpatO, nfpati, nf, nfpate, nfpatinA, nfpateH, nfpatIn, nfpatim, nfpatiH
+  [sutras] —

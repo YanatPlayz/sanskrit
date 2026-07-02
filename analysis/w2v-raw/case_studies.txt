@@ -1,0 +1,76 @@
+======================================================================
+Darma    (in-vocab: upanisadic, epics, sutras)
+  [vedic] —
+  [upanisadic] (n=9)  tattvaM, kzayaH, vivekena, saMsArasya, nAyaM, brahma", tizWatu, svo, pratyakzato, pravartata, mUrDanyayA, pratyakzeRa
+  [epics] (n=156)  viDir, buDEH, prokto, kzetrajYa, paraH, nityo, paro, smfto, paramAtmA, niScayaH, vihito, aDarmo
+  [sutras] (n=65)  dAna, svayaM, aBAve, jAti, parasya, samBUya, sAmanta, preta, yuktam, lABa, vyaYjano, utsAha
+======================================================================
+karma    (in-vocab: vedic, upanisadic, epics, sutras)
+  full-span drift: second-order=0.010  jaccard=0.980  procrustes=0.150
+  [vedic] (n=58)  paSyet, ArDnukam, smAha, param, kasmAd, rATantaram, Candaso, sodarkam, paYcamasya, syur, prIRAti, trizwuBAM
+  [upanisadic] (n=173)  tasmAnna, PalaM, nopapadyate, kalpyate, yuktaM, kriyate, karmaRo, karmaRaH, "na, gamyate, tacca, jYAnasya
+  [epics] (n=1187)  duzkaram, duzkaraM, suduzkaram, kftaM, duzkftaM, pApakaM, kurvataH, sukftaM, pApaM, pApam, SuBASuBaM, suduzkaraM
+  [sutras] (n=406)  para, daRqa, deSa, kAla, sAra, dravya, paRya, setu, sva, Pala, vana, rAja
+======================================================================
+Atman    (in-vocab: vedic)
+  [vedic] (n=45)  Datte, prARam, prARAn, daDAti, daDati, evAsmin, yajamAne, teja, aTo, annAdyaM, evAsya, sarvARi
+  [upanisadic] —
+  [epics] —
+  [sutras] —
+======================================================================
+fta    (in-vocab: vedic, sutras)
+  [vedic] (n=9)  gfhRanti, ajuzata, icCate, rudram, manaS, sumnAni, daDIco, paretya, grAvRo, dAkzAyaRa, paraM, pravfRajAni
+  [upanisadic] —
+  [epics] —
+  [sutras] (n=6)  ADAnam, SrIr, AkASam, arvAk, mantrAn, pAtra, sOmyam, devAS, carizyAmi, hotram, vadanty, lope
+======================================================================
+yajYa    (in-vocab: vedic, upanisadic, epics, sutras)
+  full-span drift: second-order=0.032  jaccard=1.000  procrustes=0.293
+  [vedic] (n=61)  prIRAti, kurvanti, aDvaryuH, kaTam, tAvad, kuryur, etEH, prAjApatyaM, syur, stuyuH, nODasaM, dvipAd
+  [upanisadic] (n=15)  yamaH, pratizWitO, vyAna, yajYaH, samAna, vyAnaH, kiMdevato, yajYe, SradDA, pfcCa, dakziRAM, prAcyAM
+  [epics] (n=10)  pramAdo, akAryARAM, DarmaSAstrezu, pravfttilakzaRo, doza, yajYezv, guRAnAm, saMprakIrtitaH, vivAhaH, vijAnatA, sargaH, hartavyaM
+  [sutras] (n=134)  kratum, etam, lokam, tapas, izwvA, taptvA, apaSyat, apaSyad, kAmas, svargam, Aharat, etAn
+======================================================================
+deva    (in-vocab: vedic, upanisadic, epics, sutras)
+  full-span drift: second-order=0.020  jaccard=0.913  procrustes=0.054
+  [vedic] (n=358)  evA, dive, SavizWa, vItaye, mahi, rAya, maho, mahAM, devAm̐, mahaH, maGavan, satrA
+  [upanisadic] (n=25)  Anandasya, mImAMsA, mantavya, Ananda, hyasya, mAtrA, viSvAni, paTA, "yo, mAtrAm, nAnyacCfRoti, pUrvavadeva
+  [epics] (n=283)  deveSa, SaMsitum, sarvaBUteSa, mahAdeva, prasIda, karmavipAkena, SUlapARe, devadeveSa, SaMkara, vfzaDvaja, varAnane, vizRo
+  [sutras] (n=160)  juzasva, divi, vikAraH, svasti, anu, Apo, yajYasya, Denum, vIryam, divo, maruto, iha
+======================================================================
+brahman    (in-vocab: vedic, epics, sutras)
+  [vedic] (n=7)  vacas, SuBrAH, dvizataH, ajarA, tigmA, vadan, maṁhizWam, dipsanti, turvaRe, CardiH, parijman, pAvakaṁ
+  [upanisadic] —
+  [epics] (n=299)  dvija, brahmaMs, dvijaSrezWa, mune, bfhattaro, BavataH, kzattaH, saKipUrvaM, samAcakzva, vijYAtum, tvattaH, tvayEva
+  [sutras] (n=9)  agniS, sumatim, SradDA, AyurdA, dASuze, pitFRAm, agnIt, viDema, ISe, prAcIm, juzatAm, pracodayAt
+======================================================================
+asura    (in-vocab: vedic)
+  [vedic] (n=18)  ketam, hotAro, rAjani, guru, Ayaṁ, arakzan, jAnIhi, enAm, amftaH, anehasam, ulbaM, sahamAnA
+  [upanisadic] —
+  [epics] —
+  [sutras] —
+======================================================================
+agni    (in-vocab: vedic, sutras)
+  [vedic] (n=13)  akzarEr, asfjanta, acarat, prerate, kAlo, kftena, daDnA, manya, Adatta, krUram, purorug, amuzminn
+  [upanisadic] —
+  [epics] —
+  [sutras] (n=89)  sTAnezu, agAram, idaM, kAra, bahir, rAtrAv, striyo, varjam, vyaYjanA, kuSIlava, sakfd, patika
+======================================================================
+rAjan    (in-vocab: vedic, epics)
+  [vedic] (n=59)  rAyo, SikzA, suvIryam, boDi, Sravo, kfDi, dAH, vAjaṁ, jAtavedo, rAyaH, janAya, havyA
+  [upanisadic] —
+  [epics] (n=3595)  mahArAja, rAjann, tAta, vIra, rAjaMs, rAjaY, rAjendra, BarataSrezWa, salile, jitakASiBiH, vijvaro, somakAnAM
+  [sutras] —
+======================================================================
+rAjA    (in-vocab: vedic, upanisadic, epics, sutras)
+  full-span drift: second-order=0.026  jaccard=1.000  procrustes=0.346
+  [vedic] (n=203)  indro, tvazwA, agniH, agnir, sajozAH, bfhaspatiH, varuRaH, BagaH, juzanta, pibanti, ozaDIr, Bavasi
+  [upanisadic] (n=44)  kartuH, pratyekaM, BavatyevaM, pUrvameva, sUkzmA, yaTASakti, rajjvAmiva, dyulokAgnO, 'nye, pitflokaM, taddvAreRa, muKyo
+  [epics] (n=2700)  DftarAzwraH, nfpaH, kururAjo, daSaraTo, pARqur, nfpatir, SaMtanur, mahArAjo, mandaH, narADipaH, drupado, pARquputro
+  [sutras] (n=189)  GAtayet, SreRI, manyeta, rAjya, mOla, daRqena, rAjYA, lABam, saMGa, prezayet, yuktam, api
+======================================================================
+nfpa    (in-vocab: epics)
+  [vedic] —
+  [upanisadic] —
+  [epics] (n=646)  tretAyuge, vAraRAvate, nivAsaM, saMkzaye, mahAkratO, kurukulaSrezWa, SApAt, mayEva, vigrahe, pARqaveyEH, vESase, vasuDADipa
+  [sutras] —

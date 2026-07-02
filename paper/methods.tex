@@ -1,0 +1,131 @@
+% =====================================================================
+%  METHODS  (draft — adapt to your voice; bib keys flagged at the end)
+%  Convention: IAST in prose, SLP1 in tables/appendix. \citet vs \citep used per ACL norm.
+% =====================================================================
+\section{Method}
+\label{sec:method}
+
+Our goal is to test whether the standard diachronic-embedding paradigm---train per-period
+embeddings, align them, and measure how a word's neighborhood changes \citep{hamilton2016}---%
+recovers semantic shifts in Sanskrit that are independently documented by philologists. The
+paradigm was developed for modern, word-segmented, higher-resource languages; Sanskrit
+violates all three assumptions, so most of our method is the preprocessing and evaluation
+needed to make the comparison meaningful. We first normalize and segment the corpus
+(\S\ref{sec:prep}), train one frozen-configuration grid of per-period embeddings
+(\S\ref{sec:emb}), measure change with alignment-free and alignment-based statistics
+(\S\ref{sec:change}), and evaluate recovery against a curated set of documented shifts with a
+directional, falsifiable test (\S\ref{sec:recovery}).
+
+\subsection{Preprocessing}
+\label{sec:prep}
+Distributional models assume that the input is a sequence of word tokens. Sanskrit hides word
+boundaries through \textit{sandhi}, the obligatory phonological fusion of adjacent words---for
+example \textit{iti}~`thus' and \textit{uv\=aca}~`said' surface as the single written token
+\textit{ityuv\=aca}---and compounds many words into one. Left unsegmented, a single lexeme
+scatters across dozens of fused surface forms, fragmenting the very co-occurrence signal an
+embedding depends on. Our pipeline therefore prioritizes recovering word boundaries
+consistently over any single editorial nicety. Each text passes through six fixed steps:
+
+\begin{enumerate}\setlength{\itemsep}{1pt}
+  \item \textbf{Cleaning.} Remove editorial metadata, verse and chapter markers, and bracketed
+        apparatus with regular expressions and manual checks.
+  \item \textbf{Transliteration.} Convert to SLP1, a reversible ASCII encoding for Sanskrit
+        \citep{slp1}, and apply Unicode NFC normalization, so that orthographically identical
+        forms share one byte sequence.
+  \item \textbf{Chunking.} Segment into ${\le}350$-character spans at whitespace, to fit the
+        context window of the neural analyzer.
+  \item \textbf{Sandhi splitting.} Restore word boundaries with ByT5-Sanskrit
+        \citep{nehrdich2024byt5}, a byte-level multitask model.
+  \item \textbf{Compound refinement.} A second pass re-segments residual long compounds.
+  \item \textbf{Lemmatization.} Optionally map forms to lemmas with the same model.
+\end{enumerate}
+
+We use a neural segmenter rather than a rule-based one \citep{huet2009heritage} because our
+corpus is heterogeneous in genre and orthography, and the byte-level model is robust to forms
+absent from any lexicon. We retain three corpora from this pipeline---\textbf{raw} (after
+step~3), \textbf{sandhi-split} (after step~5), and \textbf{lemmatized} (after step~6)---and
+treat preprocessing as an experimental variable rather than a fixed choice. The effect is
+large: sandhi splitting raises the vocabulary trackable across all four periods from 801 to
+1{,}345 words ($+68\%$), simply by reuniting fused variants of the same lexeme.
+
+\subsection{Per-period embeddings}
+\label{sec:emb}
+We train independent embeddings for each period and vary exactly one factor at a time. Every
+cell of the grid shares one \emph{frozen} configuration---skip-gram, 300 dimensions, window~5,
+minimum count~5, 10 negative samples, subsampling $10^{-4}$, 10 epochs, fixed seed
+\citep{mikolov2013,gensim2010}---so that any difference traces to the factor under study and
+not to incidental hyperparameters. The grid crosses the three preprocessing variants with two
+architectures: \textbf{word2vec}, which has no subword information, and \textbf{FastText}
+\citep{bojanowski2017}, which represents a word by its character $n$-grams; for FastText we test
+$n$-gram ranges $[3,6]$ and $[6,12]$.
+
+Two configuration choices are themselves empirical findings. First, \textbf{10 epochs}: raising
+training to 30 epochs \emph{overtrains} the small period bins (Vedic 349K, Upani\d{s}adic 194K,
+S\=utra 227K tokens), sharpening within-period neighbors but degrading the between-period signal
+we measure---cross-metric reliability (\S\ref{sec:change}) falls from $0.70$ to $0.25$ for our
+primary model, and the flagship \textit{asura} shift recovers less cleanly. Second, the FastText
+$n$-gram range is decisive for neighbor quality, as we show in \S\ref{sec:results}.
+
+\subsection{Measuring change}
+\label{sec:change}
+Independently trained spaces do not share a coordinate frame, so we align each period onto the
+Vedic space with orthogonal Procrustes \citep{hamilton2016}, fitting the rotation on the 767
+high-frequency words present in every period. We restrict all quantitative analysis to the
+1{,}345 words shared by all four periods---the lexemes we can actually track end to end---and
+compute three change statistics per word:
+
+\begin{itemize}\setlength{\itemsep}{1pt}
+  \item \textbf{Second-order similarity} \citep{hamilton2016b}, our primary measure: the cosine
+        between a word's vectors of similarities to its neighbors in two periods. It is
+        \emph{alignment-free}, so it avoids Procrustes noise.
+  \item \textbf{Procrustes cosine}, a confirmatory alignment-based measure: cosine distance
+        between a word's aligned vectors in two periods.
+  \item \textbf{Nearest-neighbor Jaccard distance}, reported for completeness; we show in
+        \S\ref{sec:results} that it saturates on corpora of this size.
+\end{itemize}
+
+\subsection{Evaluating recovery}
+\label{sec:recovery}
+Whether the embeddings ``recover'' a documented shift should not be judged by inspecting neighbor
+lists alone, which invites confirmation bias. We instead pre-register the prediction for each
+shift and test it directionally, following \citet{hamilton2016}.
+
+\paragraph{Validation set.}
+We curate 24 documented shifts plus 2 stable controls from \citet{kamboja}, a philological study
+of semantic change in Sanskrit. Crucially, the set is selected \emph{blind to our results}: we
+take candidate words from Kamboja's index and keep only those frequent enough to track across
+periods, before computing any embedding statistic. For each shift we record its source and target
+sense and the period transition in which it is documented to occur (e.g.\ \textit{asura}
+`lord, mighty god'~$\rightarrow$~`demon', Vedic~$\rightarrow$~Epic).
+
+\paragraph{Directional anchor test.}
+For each shift we specify, \emph{a priori from Kamboja's glosses}, small sets of anchor words
+denoting the old and the new sense---never drawn from the model's neighbor lists, to keep the
+test non-circular. For \textit{asura}, the old-sense anchors are deities (\textit{indra},
+\textit{mitra}, \textit{varu\d{n}a}) and the new-sense anchors are demon classes
+(\textit{r\=ak\d{s}asa}, \textit{d\=anava}, \textit{daitya}). Writing $c_{\text{old}}(t)$ and
+$c_{\text{new}}(t)$ for the cosine similarity of the target to the mean old- and new-sense
+anchor in period~$t$, a shift counts as recovered in the attested direction when
+\[
+\Delta \;=\; \bigl[c_{\text{new}}-c_{\text{old}}\bigr]_{\text{end}}
+            -\bigl[c_{\text{new}}-c_{\text{old}}\bigr]_{\text{start}} \;>\; 0
+\]
+across its documented transition. The two-sided contrast cancels a confound: absolute cosines
+shrink across periods as the vocabulary grows, so a one-sided ``moved toward the new sense''
+test is biased; the difference of differences removes this common drift. Because four periods
+give little power per word, we assess significance over the \emph{population} of shifts with a
+binomial sign test (null: direction is a coin flip), and read individual neighbor trajectories
+qualitatively as case studies.
+
+% =====================================================================
+%  BIB KEYS USED (add to custom.bib; replace with ACL Anthology entries where available):
+%   hamilton2016   — Hamilton, Leskovec, Jurafsky 2016, ACL (diachronic embeddings; Procrustes; attested-shift test)
+%   hamilton2016b  — Hamilton, Leskovec, Jurafsky 2016, EMNLP "Cultural Shift or Linguistic Drift" (second-order measure)
+%   nehrdich2024byt5 — you already cite this as nehrdich2024modelneedbyt5sanskritunified; reuse that key
+%   slp1           — you already cite this as N_J_2025; reuse that key
+%   mikolov2013    — Mikolov et al. 2013 (word2vec / skip-gram negative sampling)
+%   bojanowski2017 — Bojanowski et al. 2017 (FastText / subword)
+%   gensim2010     — Rehurek & Sojka 2010 (gensim)
+%   huet2009heritage — Goyal & Huet (Sanskrit Heritage segmenter) — for the rule-based contrast
+%   kamboja        — Kamboja, *Semantic Change in Sanskrit* (the validation-set source)
+% =====================================================================

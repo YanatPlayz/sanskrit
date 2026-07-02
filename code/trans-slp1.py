@@ -3,8 +3,8 @@ from indic_transliteration import sanscript
 from indic_transliteration.sanscript import transliterate
 import unicodedata
 
-input_folder = Path("../data/iast/epics") #run once for each folder
-output_folder = Path("../data/slp1/epics")
+input_folder = Path("../data/final/final_lemma/") #run once for each folder
+output_folder = Path("../data/final/lemma/") 
 output_folder.mkdir(exist_ok=True)
 
 for input_file in input_folder.glob("*.txt"):

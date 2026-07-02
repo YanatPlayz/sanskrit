@@ -1,0 +1,81 @@
+======================================================================
+Darma    (in-vocab: vedic, upanisadic, epics, sutras)
+  full-span drift: second-order=0.035  jaccard=0.958  procrustes=0.327
+  [vedic] (n=38)  Slokaṁ, pratiDi, viDAtf, praSAs, trAyamARa, prapaTa, variman, dyAvABUmI, mahatI, paripaS, vizkamB, puruDA
+  [upanisadic] (n=320)  aDarma, varjay, svABAvika, ucCitti, Aspada, rahita, nirupADika, balIyas, vigam, vizayin, Darmaka, upalabDf
+  [epics] (n=8053)  sTApana, samudAcar, parAvara, svaDarma, sadDarma, Darmya, gurulAGava, Darman, sfta, dampati, Avftti, DarmizWa
+  [sutras] (n=563)  anuzWA, SAstra, apekzA, vEvAhika, sADAraRa, viSezataH, anuzWAna, avaSyam, aDikAra, prAmARya, sAmayAcArika, prADAnya
+======================================================================
+karma    (in-vocab: NONE)
+  [vedic] —
+  [upanisadic] —
+  [epics] —
+  [sutras] —
+======================================================================
+Atman    (in-vocab: vedic, upanisadic, epics, sutras)
+  full-span drift: second-order=0.053  jaccard=0.958  procrustes=0.325
+  [vedic] (n=451)  SarIra, utkram, Sabda, praviS, ganDa, udAna, dIp, prajYApay, prAR, pApIyas, samAruh, parigrah
+  [upanisadic] (n=2916)  antaratara, ayas, vihan, akAma, anAdara, Atmavat, prakfti, kroDa, saMniDA, prAjYa, nizkAma, pratyagAtman
+  [epics] (n=5484)  nirAtman, avicakzaRa, AveSay, ahiMsaka, nirahaMkfta, apohya, DarmasUnu, itTam, pakzapAta, nirvikAra, nityakAlam, saMSuD
+  [sutras] (n=596)  saMDi, viSaya, pucCa, vyasta, SI, sTA, parigrah, viparIta, apyaya, upaDA, zoqaSI, avasTA
+======================================================================
+fta    (in-vocab: vedic, upanisadic, epics, sutras)
+  full-span drift: second-order=0.074  jaccard=1.000  procrustes=0.216
+  [vedic] (n=585)  Darman, DIti, ftAvan, DAman, sadana, banDu, DIra, adruh, yahva, priya, saDasTa, rAj
+  [upanisadic] (n=40)  aSakata, pravas, parye, vad, vaktf, DAray, namas, mAtfmat, mad, av, Bo, jEvali
+  [epics] (n=330)  etAdfSa, duHKitatara, pratyanIka, Cettf, sampAday, lopay, pratibAD, sahAyavat, samudyoga, pratiyodDf, jyAyas, yaTAviDa
+  [sutras] (n=60)  apAna, vAcaspati, sajUs, syona, jinv, DyA, aBidAs, prasava, suprajas, pracoday, mIQvas, Sarman
+======================================================================
+yajYa    (in-vocab: vedic, upanisadic, epics, sutras)
+  full-span drift: second-order=0.074  jaccard=0.980  procrustes=0.254
+  [vedic] (n=1310)  ftvij, yaj, gfhapati, prI, purohita, sOmya, prasTA, dEva, hotrA, jamadagni, mantra, ujji
+  [upanisadic] (n=230)  ftvij, hotf, aDvaryu, yama, aBirakz, pU, yaj, prAtaHsavana, sampAday, dAna, caturviMSati, viriz
+  [epics] (n=1655)  cAturmAsya, dakziRAvat, paSubanDa, kratu, yaj, mahAyajYa, atikAlay, izwi, pAkayajYa, maKa, atirAtra, ijyA
+  [sutras] (n=462)  jigIz, aBiBU, kratu, asura, varcasa, akziti, svarAj, apaciti, Ips, ananta, svayamBu, uSanas
+======================================================================
+deva    (in-vocab: vedic, upanisadic, epics, sutras)
+  full-span drift: second-order=0.058  jaccard=1.000  procrustes=0.162
+  [vedic] (n=4110)  ftAvfDa, yama, devatrA, ftuSas, sADu, amfta, yajYiya, prezWa, yAna, yajya, anumati, AsU
+  [upanisadic] (n=676)  manuzya, indra, SataguRIkf, aBikzar, vfjina, Bava, upakaraRa, viS, AjAnadeva, vazawkAra, Srotriya, hantakAra
+  [epics] (n=5326)  maRiBadra, sura, pUrvadeva, cakracara, DaneSa, aByarcay, pinAkin, devatA, BuvaneSvara, jagatpati, vipracitti, aBizwu
+  [sutras] (n=753)  savitf, viSva, vareRya, Bargas, sarasvatI, tvazwf, damUnas, DI, av, Iq, pracoday, prasava
+======================================================================
+brahman    (in-vocab: vedic, upanisadic, epics, sutras)
+  full-span drift: second-order=0.072  jaccard=0.980  procrustes=0.237
+  [vedic] (n=1170)  ASis, prakASa, ASI, praDarzay, rAjasUya, avarudDi, pratigrah, puroDA, vAmadeva, puroDas, gara, apakrAmuka
+  [upanisadic] (n=1854)  AdiS, nArada, ativad, sUtrita, padanIya, vyAcakz, anudfS, aBeda, Opanizada, vijijiYAsA, arRava, vedana
+  [epics] (n=2786)  lokakartf, DAman, padmayoni, aSvaSiras, taRqi, Atmayoni, lokapitAmaha, viSvasfj, ayoni, pratizeDa, svayamBu, lokasAkzin
+  [sutras] (n=352)  varcasa, sadana, BrAtfvya, udgAtf, hotf, aNgiras, aBivyAhAra, Ikz, rAD, i, apahan, bfhaspati
+======================================================================
+asura    (in-vocab: vedic, upanisadic, epics, sutras)
+  full-span drift: second-order=0.077  jaccard=1.000  procrustes=0.438
+  [vedic] (n=272)  anud, BrAtfvya, vfj, apriya, praRud, avara, spfD, Asan, AkzAra, para, kAmaduGA, anapajayyam
+  [upanisadic] (n=69)  aBiBU, vyaD, virocana, uBaya, fC, Asura, prAjApatya, viDvaMs, pApman, parABU, prajApati, nAsikya
+  [epics] (n=888)  vidrAvaRa, kAleya, hiraRyAkza, vipracitti, mahoraga, kAlakeya, vajrahasta, vajrapARi, dAnava, vajraBft, rajanicara, avizahya
+  [sutras] (n=35)  aBiBU, akziti, svarAj, jigIz, apahan, BrAtfvya, vfzwi, yajYa, yama, varcasa, sfj, ADipatya
+======================================================================
+agni    (in-vocab: vedic, upanisadic, epics, sutras)
+  full-span drift: second-order=0.046  jaccard=0.889  procrustes=0.174
+  [vedic] (n=3631)  jAtavedas, saminD, inD, purohita, Iq, samiD, mAnuza, havizmat, duroRa, manus, yajizWa, dama
+  [upanisadic] (n=708)  AhavanIya, saminD, Ajya, sampAta, saMsrava, yozA, tarpay, ADA, ujjval, avanI, sTAlIpAka, dIp
+  [epics] (n=2022)  pAvaka, vahni, inD, citraBAnu, hutASana, kfzRavartman, hutASa, havyavAhana, saminD, anala, havyavAha, havyavah
+  [sutras] (n=1985)  saminD, iq, sAmiDenI, anuvAkyA, vanaspati, prayAja, maT, nakta, hotra, Ajya, soma, nigama
+======================================================================
+rAjan    (in-vocab: vedic, upanisadic, epics, sutras)
+  full-span drift: second-order=0.030  jaccard=0.980  procrustes=0.254
+  [vedic] (n=579)  Darma, anAga, varuRa, aMSa, riSAdas, netf, svarAj, rajizWa, varzizWa, DUrti, mI, vAmaṁ
+  [upanisadic] (n=202)  Bftya, prAtar, rAjya, hf, Amantray, svAmin, rAja, duhitf, bali, paricar, AnI, rEkva
+  [epics] (n=15127)  mahIpAla, mAtsya, parIpsA, koSala, gAnDAri, paYcAla, sabala, anum, vESyAputra, viprasTA, DarmasUnu, gograha
+  [sutras] (n=661)  rakz, vinaS, banDu, nfpa, Bftya, rAzwra, snuzA, jYAti, brU, kulya, BikzukI, kilbiza
+======================================================================
+rAjA    (in-vocab: NONE)
+  [vedic] —
+  [upanisadic] —
+  [epics] —
+  [sutras] —
+======================================================================
+nfpa    (in-vocab: epics, sutras)
+  [vedic] —
+  [upanisadic] —
+  [epics] (n=1996)  pArTiva, nfpati, dASArRaka, nahuzAtmaja, gAnDAri, rAjan, viprasTA, anum, SunaHSepa, pfTivIpati, haryaSva, hfdika
+  [sutras] (n=43)  pAlay, cOra, anfta, sTUla, vinI, vinaS, aBigam, bAnDava, BaYj, prasAra, pravIra, kzamA

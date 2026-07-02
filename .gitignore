@@ -3,3 +3,7 @@ code/__pycache__/
 code/sanskrit-env/
 models/
 .DS_Store
+code/EvalSan
+chat.txt
+sanskrit-chat.txt
+paper/refs

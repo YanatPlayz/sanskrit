@@ -1,16 +1,16 @@
 from pathlib import Path
 import re
 
-input_folder = Path("../data/clean/sutras")
-output_folder = Path("../data/final/sutras")
+input_folder = Path("../data/pramana")
+output_folder = Path("../data/pramanas")
 output_folder.mkdir(exist_ok=True)
 
 REFERENCE_PATTERNS = [
     r"\(.*?\)|\<.*?\>|\[.*?\]|\{.*?\}",                      # <1.1.1>
-    r"[A-Za-z]+\d[\d\.,]*[a-z]*\.",                          # kaj001.1.04a.
-    r"[A-Za-z\-]+_\d[\d\.,]*[A-Za-z]?[:]*",                  # apgs-anA_1.6
+    #r"[A-Za-z]+\d[\d\.,]*[a-z]*\.",                          # kaj001.1.04a.
+    #r"[A-Za-z\-]+_\d[\d\.,]*[A-Za-z]?[:]*",                  # apgs-anA_1.6
     #r"\d+[\d\.,]*(?:[*]\d+)?[_\d]*[a-z]?\s?",               # 01,000.000*0017_02
-    r"\d+[\d\.,:]*[\d\.,]*[:]*",                             # 1.1.1:
+    #r"\d+[\d\.,:]*[\d\.,]*[:]*",                             # 1.1.1:
     #r"\.\.\s*[A-Za-z]+_\d[\d\.,]*",                         # .. manu_1.10
     #r"^\s*start\s+[A-Za-z]+\s+[\d\.,]+\s*",
 ]

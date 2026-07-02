@@ -1,0 +1,186 @@
+=== TRAIN w2v raw ===
+Exception ignored in: 'gensim.models.word2vec_inner.our_dot_float'
+[word2vec/raw] training vedic from vedic_corpus.txt ...
+    vocab=11,110  tokens(>=min_count)=280,279
+[word2vec/raw] training upanisadic from upanisadic_corpus.txt ...
+    vocab=3,175  tokens(>=min_count)=74,379
+[word2vec/raw] training epics from epics_corpus.txt ...
+    vocab=31,953  tokens(>=min_count)=1,164,183
+[word2vec/raw] training sutras from sutras_corpus.txt ...
+    vocab=6,748  tokens(>=min_count)=138,858
+
+Done. Models + params.json + stats.csv in ../models/w2v-raw
+=== TRAIN w2v lemma ===
+Exception ignored in: 'gensim.models.word2vec_inner.our_dot_float'
+Exception ignored in: 'gensim.models.word2vec_inner.our_dot_float'
+Exception ignored in: 'gensim.models.word2vec_inner.our_dot_float'
+Exception ignored in: 'gensim.models.word2vec_inner.our_dot_float'
+Exception ignored in: 'gensim.models.word2vec_inner.our_dot_float'
+[word2vec/lemma] training vedic from vedic_corpus.txt ...
+    vocab=5,203  tokens(>=min_count)=395,491
+[word2vec/lemma] training upanisadic from upanisadic_corpus.txt ...
+    vocab=3,274  tokens(>=min_count)=215,767
+[word2vec/lemma] training epics from epics_corpus.txt ...
+    vocab=11,120  tokens(>=min_count)=1,755,013
+[word2vec/lemma] training sutras from sutras_corpus.txt ...
+    vocab=5,228  tokens(>=min_count)=267,530
+
+Done. Models + params.json + stats.csv in ../models/w2v-lemma
+=== TRAIN ft raw 3-6 ===
+Exception ignored in: 'gensim.models.word2vec_inner.our_dot_float'
+Exception ignored in: 'gensim.models.word2vec_inner.our_dot_float'
+[fasttext/raw] training vedic from vedic_corpus.txt ...
+    vocab=11,110  tokens(>=min_count)=280,279
+[fasttext/raw] training upanisadic from upanisadic_corpus.txt ...
+    vocab=3,175  tokens(>=min_count)=74,379
+[fasttext/raw] training epics from epics_corpus.txt ...
+    vocab=31,953  tokens(>=min_count)=1,164,183
+[fasttext/raw] training sutras from sutras_corpus.txt ...
+    vocab=6,748  tokens(>=min_count)=138,858
+
+Done. Models + params.json + stats.csv in ../models/ft-raw-3-6
+=== DRIFT w2v-raw ===
+Loaded stoplist: 256 function words (excluded from rankings)
+Loading models from ../models/w2v-raw ...
+Shared vocab across all 4 eras: 801 words
+Procrustes anchors: 432 (min-count>=10)
+Wrote ../analysis/w2v-raw/drift_scores.csv (801 words)
+
+Frequency control (robust set, n=323): Spearman(log total_freq, drift) = 0.144 (p=9.54e-03)
+Cross-metric Spearman (full span, robust set):
+  second-order vs jaccard : -0.021
+  second-order vs procrustes: 0.699
+  jaccard vs procrustes     : 0.077
+
+Top 20 movers (second-order, full span, min_freq>=10):
+  ity            so=0.052  jac=1.000  proc=0.298  minf=319
+  sAma           so=0.050  jac=1.000  proc=0.319  minf=23
+  kAmo           so=0.050  jac=1.000  proc=0.495  minf=20
+  kAma           so=0.049  jac=1.000  proc=0.419  minf=12
+  yajYasya       so=0.047  jac=1.000  proc=0.290  minf=26
+  Bavaty         so=0.045  jac=0.936  proc=0.427  minf=47
+  prARena        so=0.043  jac=0.889  proc=0.239  minf=11
+  teByo          so=0.043  jac=0.958  proc=0.273  minf=21
+  etam           so=0.042  jac=1.000  proc=0.173  minf=39
+  ya             so=0.041  jac=0.958  proc=0.315  minf=104
+  soma           so=0.035  jac=0.864  proc=0.114  minf=10
+  dve            so=0.034  jac=0.936  proc=0.263  minf=47
+  lokam          so=0.032  jac=0.980  proc=0.159  minf=19
+  svAhA          so=0.032  jac=0.913  proc=0.138  minf=29
+  yajYa          so=0.032  jac=1.000  proc=0.293  minf=10
+  vAcA           so=0.031  jac=0.980  proc=0.217  minf=30
+  saha           so=0.031  jac=1.000  proc=0.244  minf=102
+  pfTivI         so=0.030  jac=0.864  proc=0.168  minf=72
+  sarvam         so=0.028  jac=1.000  proc=0.209  minf=97
+  dyOH           so=0.028  jac=0.958  proc=0.299  minf=10
+
+Wrote ../analysis/w2v-raw/case_studies.txt, ../analysis/w2v-raw/top_movers.csv, ../analysis/w2v-raw/most_stable.csv
+=== DRIFT w2v-lemma ===
+Loaded stoplist: 256 function words (excluded from rankings)
+Loading models from ../models/w2v-lemma ...
+Shared vocab across all 4 eras: 1,246 words
+Procrustes anchors: 776 (min-count>=10)
+Wrote ../analysis/w2v-lemma/drift_scores.csv (1246 words)
+
+Frequency control (robust set, n=719): Spearman(log total_freq, drift) = 0.209 (p=1.57e-08)
+Cross-metric Spearman (full span, robust set):
+  second-order vs jaccard : 0.124
+  second-order vs procrustes: 0.582
+  jaccard vs procrustes     : 0.289
+
+Top 20 movers (second-order, full span, min_freq>=10):
+  maRqala        so=0.271  jac=0.958  proc=0.629  minf=10
+  kratu          so=0.172  jac=1.000  proc=0.533  minf=64
+  utTA           so=0.148  jac=1.000  proc=0.459  minf=56
+  dIrGa          so=0.141  jac=1.000  proc=0.555  minf=15
+  koSa           so=0.140  jac=1.000  proc=0.555  minf=22
+  vat            so=0.135  jac=1.000  proc=0.571  minf=111
+  vIrya          so=0.129  jac=0.980  proc=0.410  minf=41
+  anurUpa        so=0.126  jac=0.980  proc=0.459  minf=48
+  coday          so=0.112  jac=1.000  proc=0.592  minf=21
+  pASa           so=0.109  jac=1.000  proc=0.383  minf=13
+  dvAr           so=0.109  jac=1.000  proc=0.477  minf=32
+  kARqa          so=0.106  jac=1.000  proc=0.514  minf=13
+  tapas          so=0.104  jac=0.958  proc=0.298  minf=132
+  yoni           so=0.103  jac=0.980  proc=0.341  minf=78
+  pU             so=0.103  jac=1.000  proc=0.289  minf=23
+  SuD            so=0.103  jac=1.000  proc=0.615  minf=38
+  aDipati        so=0.102  jac=1.000  proc=0.201  minf=24
+  apAna          so=0.102  jac=0.936  proc=0.335  minf=11
+  sADana         so=0.100  jac=1.000  proc=0.744  minf=33
+  saMDA          so=0.100  jac=1.000  proc=0.386  minf=26
+
+Wrote ../analysis/w2v-lemma/case_studies.txt, ../analysis/w2v-lemma/top_movers.csv, ../analysis/w2v-lemma/most_stable.csv
+=== DRIFT ft-raw-3-6 ===
+Loaded stoplist: 256 function words (excluded from rankings)
+Loading models from ../models/ft-raw-3-6 ...
+Shared vocab across all 4 eras: 801 words
+Procrustes anchors: 432 (min-count>=10)
+Wrote ../analysis/ft-raw-3-6/drift_scores.csv (801 words)
+
+Frequency control (robust set, n=323): Spearman(log total_freq, drift) = -0.031 (p=5.76e-01)
+Cross-metric Spearman (full span, robust set):
+  second-order vs jaccard : 0.461
+  second-order vs procrustes: 0.674
+  jaccard vs procrustes     : 0.199
+
+Top 20 movers (second-order, full span, min_freq>=10):
+  ity            so=0.073  jac=0.980  proc=0.287  minf=319
+  tAm            so=0.060  jac=0.913  proc=0.260  minf=10
+  brahma         so=0.054  jac=0.889  proc=0.317  minf=125
+  vAk            so=0.050  jac=0.913  proc=0.269  minf=27
+  soma           so=0.048  jac=0.864  proc=0.316  minf=10
+  brahmaRA       so=0.044  jac=0.889  proc=0.264  minf=20
+  yajYasya       so=0.044  jac=0.889  proc=0.135  minf=26
+  dakziRe        so=0.043  jac=0.936  proc=0.388  minf=13
+  indraH         so=0.043  jac=0.889  proc=0.255  minf=10
+  indro          so=0.042  jac=0.936  proc=0.240  minf=10
+  devA           so=0.041  jac=0.718  proc=0.177  minf=79
+  vAcA           so=0.040  jac=0.913  proc=0.210  minf=30
+  devAn          so=0.040  jac=0.750  proc=0.176  minf=23
+  somo           so=0.040  jac=0.936  proc=0.300  minf=20
+  so             so=0.039  jac=0.980  proc=0.241  minf=99
+  kartA          so=0.036  jac=0.958  proc=0.371  minf=15
+  yajYe          so=0.036  jac=0.780  proc=0.144  minf=13
+  tvA            so=0.036  jac=0.913  proc=0.250  minf=37
+  devAH          so=0.035  jac=0.750  proc=0.202  minf=30
+  dakziRA        so=0.034  jac=0.936  proc=0.344  minf=17
+
+Wrote ../analysis/ft-raw-3-6/case_studies.txt, ../analysis/ft-raw-3-6/top_movers.csv, ../analysis/ft-raw-3-6/most_stable.csv
+=== DRIFT ft-sandhi-3-6 (stoplist refresh) ===
+Loaded stoplist: 256 function words (excluded from rankings)
+Loading models from ../models/ft-sandhi-3-6 ...
+Shared vocab across all 4 eras: 1,345 words
+Procrustes anchors: 767 (min-count>=10)
+Wrote ../analysis/ft-sandhi-3-6/drift_scores.csv (1345 words)
+
+Frequency control (robust set, n=607): Spearman(log total_freq, drift) = 0.124 (p=2.28e-03)
+Cross-metric Spearman (full span, robust set):
+  second-order vs jaccard : 0.543
+  second-order vs procrustes: 0.738
+  jaccard vs procrustes     : 0.437
+
+Top 20 movers (second-order, full span, min_freq>=10):
+  kratu          so=0.161  jac=0.958  proc=0.540  minf=14
+  vat            so=0.141  jac=0.980  proc=0.527  minf=102
+  bfhat          so=0.134  jac=0.958  proc=0.526  minf=34
+  svar           so=0.099  jac=0.958  proc=0.264  minf=24
+  sAma           so=0.098  jac=0.980  proc=0.401  minf=80
+  viSva          so=0.093  jac=0.913  proc=0.259  minf=29
+  viSve          so=0.087  jac=0.936  proc=0.261  minf=11
+  para           so=0.086  jac=0.936  proc=0.318  minf=12
+  vAc            so=0.085  jac=0.958  proc=0.501  minf=108
+  Atmani         so=0.084  jac=0.980  proc=0.463  minf=34
+  vasu           so=0.080  jac=0.913  proc=0.368  minf=22
+  tvA            so=0.080  jac=1.000  proc=0.386  minf=49
+  indra          so=0.079  jac=0.913  proc=0.313  minf=36
+  viSvam         so=0.079  jac=0.980  proc=0.204  minf=12
+  soma           so=0.075  jac=0.958  proc=0.290  minf=34
+  devam          so=0.075  jac=0.980  proc=0.118  minf=28
+  sUrya          so=0.072  jac=0.936  proc=0.326  minf=18
+  cakzuH         so=0.070  jac=0.980  proc=0.296  minf=52
+  jana           so=0.069  jac=0.980  proc=0.478  minf=11
+  san            so=0.068  jac=0.810  proc=0.382  minf=23
+
+Wrote ../analysis/ft-sandhi-3-6/case_studies.txt, ../analysis/ft-sandhi-3-6/top_movers.csv, ../analysis/ft-sandhi-3-6/most_stable.csv
+=== GRID DONE ===

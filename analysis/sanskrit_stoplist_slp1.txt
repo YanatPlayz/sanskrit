@@ -1,0 +1,53 @@
+# Sanskrit function-word stoplist (SLP1) — excluded from drift RANKINGS only
+# (full drift_scores.csv stays complete). Particles, pronouns + common inflections,
+# copula/auxiliary + verbs of saying, and standalone preverbs/upasargas that appear
+# as tokens after sandhi-splitting. Curated; extend as needed. Cite in appendix.
+
+# ---- particles / indeclinables ----
+ca vA eva hi tu api iva iti ha vE u nu kila Kalu aTa aTo uta sma cana cit cid
+no na mA kintu paraM parantu tAvat yAvat iha adya hyaH Svas nUnam bata are ho
+eva vai punar punaH evam taTA yaTA tadA yadA kadA sadA hanta nanu cet yadi
+tatra yatra atra sarvatra kutra anyatra tatas yatas atas itas kutas saH
+
+# ---- correlatives / adverbs ----
+taTApi taTeti yatra tatra yena tena taTA yaTA
+
+# ---- sa / tad ----
+saH sA tat tad te tE tAH tasya tasyAH tasmE tasmin tasmAt tena tayA tayoH
+teByaH tAn tAni tEH tABiH tasyAm tezAm tezu
+
+# ---- etad ----
+etat etad ezaH ezA ete etE etasya etasmin etasmAt etena etAni etAm etayA
+ezu ezAm etAH etEH etezAm etezu etasyAm
+
+# ---- idam ----
+idam ayam iyam ime imam imAn imAni asya asyAH asmE asmin asmAt anena anayA
+eBiH eByaH AByAm imAm imau asyAm
+
+# ---- adas ----
+asO amI amum amuzya amuzmin amuzmai amUni
+
+# ---- yad ----
+yaH yA yat yad ye yE yAH yasya yasyAH yasmE yasmin yasmAt yena yayA yayoH
+yeByaH yAn yAni yEH yezAm yezu yasyAm
+
+# ---- kim ----
+kaH kA kim ke kAH kasya kasmE kasmin kasmAt kena kayA kAn kAni kEH
+
+# ---- asmad / yuzmad ----
+aham mAm mama mahyam mayA mayi vayam asmAn asmAkam asmaByam asmABiH asmAsu
+mad asmat naH nO tvam tvAm tava tuByam tvayA tvayi yUyam yuzmAn yuzmAkam
+yuzmaByam yuzmABiH vaH yuzmat tvat
+
+# ---- as 'to be' ----
+asti staH santi AsIt AstAm Asan asmi asi smaH sTa syAt syAtAm syuH Asa
+
+# ---- bhU 'to become' ----
+Bavati BavataH Bavanti aBavat aBUt Bavizyati Bavet BaveyuH BUtvA Bavatu
+baBUva baBUvuH Bavantu BUyAt
+
+# ---- verbs of saying ----
+uvAca UcuH provAca Aha AhuH abravIt bravIti bruvan brUyAt ityuvAca
+
+# ---- standalone preverbs / upasargas (post-sandhi tokens) ----
+anu prati pari aBi aDi upa sam vi ni ud ava apa pra parA nis dus su A
