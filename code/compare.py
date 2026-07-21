@@ -1,4 +1,26 @@
-"""compare.py — RQ2 grid comparison: orthographic pollution + reliability diagnostics."""
+"""
+compare.py — grid comparison across preprocessing variants and architectures.
+
+Reproduces the model-comparison table in the paper. For each cell of the grid it reports:
+
+  orthog%     share of a word's top-10 nearest neighbors that are merely orthographic
+              look-alikes (shared >=4-character affix, or edit distance <=2) rather than
+              semantic associates, averaged over the case words x periods. This is the
+              diagnostic that separates FastText from word2vec: short character n-grams
+              retrieve inflected echoes of the stem instead of synonyms. Lower is better.
+  so~proc     Spearman correlation between the second-order and Procrustes change scores,
+              used as a reliability estimate — two measures with different failure modes
+              agreeing is evidence the ranking reflects signal rather than noise.
+  freq~drift  Spearman correlation between log total frequency and the change score,
+              a check on whether apparent change is a frequency artifact.
+  sharedV     vocabulary trackable across all four periods.
+
+Requires train.py to have produced models/<name>/ and drift.py to have produced
+analysis/<name>/drift_scores.csv for every model listed in MODELS.
+
+Usage:
+    python compare.py
+"""
 import csv
 from pathlib import Path
 import numpy as np
@@ -6,7 +28,8 @@ from scipy.stats import spearmanr
 from drift import load_wv, PERIODS, CASE_WORDS
 
 REPO = Path(__file__).resolve().parent.parent
-MODELS = {  # label -> (models_dir, analysis_dir)   [all frozen-config / train.py]
+STOPLIST = Path(__file__).resolve().parent / "sanskrit_stoplist_slp1.txt"
+MODELS = {  # label -> directory name, shared by models/<name> and analysis/<name>
     "ft-raw-3-6":    "ft-raw-3-6",
     "w2v-raw":       "w2v-raw",
     "ft-sandhi-3-6": "ft-sandhi-3-6",
@@ -14,7 +37,7 @@ MODELS = {  # label -> (models_dir, analysis_dir)   [all frozen-config / train.p
     "w2v-sandhi":    "w2v-sandhi",
     "w2v-lemma":     "w2v-lemma",
 }
-STOP = set((REPO / "analysis/sanskrit_stoplist_slp1.txt").read_text().replace("#", " # ").split())
+STOP = set(STOPLIST.read_text(encoding="utf-8").replace("#", " # ").split())
 
 
 def lev(a, b):

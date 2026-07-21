@@ -6,12 +6,17 @@ Computes three complementary drift metrics for every word shared across all eras
   2. Local-neighborhood / second-order sim   (alignment-free, robust; Hamilton et al. 2016)  -> HEADLINE
   3. Orthogonal Procrustes + cosine          (alignment-based; confirmatory)
 
-Reusable: point --models_dir at any directory laid out as
-    <models_dir>/<era>/fasttext_<era>.model
-so the same analysis runs on v1 / a frozen grid / v2 unchanged.
+Point --models_dir at any directory laid out as
+    <models_dir>/<era>/<arch>_<era>.model
+(the layout train.py writes), so the same analysis runs unchanged over every cell of
+the grid. FastText and Word2Vec models are detected automatically.
+
+Writes drift_scores.csv (every metric for every trackable word), top_movers.csv,
+most_stable.csv, and case_studies.txt (per-era neighbor lists for the case words).
 
 Usage:
-    python drift.py --models_dir ../models/v1-sandhi-2-6 --out_dir ../analysis/v1-sandhi-2-6
+    python drift.py --models_dir ../models/w2v-sandhi --out_dir ../analysis/w2v-sandhi \
+                    --stoplist sanskrit_stoplist_slp1.txt
 """
 
 import argparse
@@ -140,8 +145,9 @@ def main():
     ap.add_argument("--models_dir", required=True)
     ap.add_argument("--out_dir", required=True)
     ap.add_argument("--topk", type=int, default=TOPK)
-    ap.add_argument("--stoplist", default=None,
-                    help="SLP1 function-word list; excluded from rankings/stats (not from drift_scores.csv)")
+    ap.add_argument("--stoplist", default=str(Path(__file__).resolve().parent / "sanskrit_stoplist_slp1.txt"),
+                    help="SLP1 function-word list; excluded from rankings/stats "
+                         "(not from drift_scores.csv). Pass '' to disable.")
     args = ap.parse_args()
 
     out = Path(args.out_dir)

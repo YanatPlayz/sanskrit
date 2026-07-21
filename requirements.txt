@@ -1,0 +1,14 @@
+# Embedding training and analysis
+gensim==4.4.0
+numpy==2.3.5
+scipy==1.16.3
+pandas==2.3.3
+scikit-learn==1.9.0
+
+# Sanskrit-specific processing
+indic-transliteration==2.3.75      # IAST <-> SLP1
+dharmamitra-sanskrit-grammar==0.1.7  # ByT5-Sanskrit sandhi splitting + lemmatization
+
+# Corpus preparation
+beautifulsoup4==4.14.2
+tqdm==4.67.1

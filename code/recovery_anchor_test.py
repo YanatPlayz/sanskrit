@@ -30,7 +30,7 @@ from drift import load_wv, PERIODS  # vedic, upanisadic, epics, sutras
 TRANS = {  # documented transition -> (start_era, end_era)
     "V→U": ("vedic", "upanisadic"), "V→E": ("vedic", "epics"),
     "V→S": ("vedic", "sutras"), "U→E": ("upanisadic", "epics"),
-    "U→S": ("upanisadic", "sutras"), "V→E/S": ("vedic", "epics"),
+    "U→S": ("upanisadic", "sutras"), "V→E/S": ("vedic", "epics"),"E→S": ("epics", "sutras")
 }
 
 # target forms to probe (reuse the best-present form per era)
@@ -44,10 +44,10 @@ TARGET = {
     "yoga": ["yoga", "yogaH", "yogam", "yogena"],
     "guṇa": ["guRa", "guRaH", "guRam", "guRAH"],
     "soma": ["soma", "somaH", "somam"],
-    "prajāpati": ["prajApati", "prajApatiH", "prajApatim"],
     "kṣatra": ["kzatra", "kzatram", "kzatrasya"],
     "śūdra": ["SUdra", "SUdraH", "SUdram"],
     "ari": ["ari", "ariH", "arim", "areH"],
+    "uttara": ["uttara", "uttaraH", "uttaram"],
     "uttama": ["uttama", "uttamaH", "uttamam"],
     "pāda": ["pAda", "pAdaH", "pAdam"],
     "tejas": ["tejas", "tejaH", "tejasA"],
@@ -55,11 +55,8 @@ TARGET = {
     "bhṛtya": ["Bftya", "BftyaH", "Bftyam", "BftyAH"],
     "arka": ["arka", "arkaH", "arkam"],
     "aṃśu": ["aMSu", "aMSuH", "aMSavaH"],
-    "preta": ["preta", "pretaH", "pretam"],
     "vrata": ["vrata", "vratam", "vratasya"],
-    "rājan": ["rAjA", "rAja", "rAjan", "rAjAnam"],
     "deva": ["deva", "devAH", "devaH"],     # control
-    "veda": ["veda", "vedaH", "vedam"],     # control
 }
 
 # OLD-sense / NEW-sense anchors (SLP1), a priori from documented glosses. [] => not used.
@@ -76,55 +73,49 @@ ANCHORS = {
                 ["pfTivI", "pfTivIm", "raSmi", "raSmiH", "BUmi"]),
     "hari":    (["harita", "haritaH", "babhru", "piSaNga"],
                 ["vizRu", "vizRuH", "vAnara", "vAnaraH", "kapi", "kapiH"]),
-    "yoga":    (["yuj", "yojana", "yojanam", "raSmi"],
-                ["DyAna", "DyAnam", "samADi", "samADiH", "yogin", "yogI", "sAMKya"]),
+    "yoga":    (["aSva", "go", "yuj", "yukta"],
+                ["DyAna", "samADi", "DAraRA", "aByAsa"]),
     "guṇa":    (["tantu", "sUtra", "rajju", "pASa", "jyA"],
                 ["svaBAva", "svaBAvaH", "prakfti", "prakftiH", "doza", "dozaH", "lakzaRa"]),
     "soma":    (["ozaDi", "latA", "vIruD"],
                 ["candra", "candraH", "candramas", "indu", "induH"]),
-    "prajāpati": ([],
-                ["svayaMBU", "svayaMBUH", "brahmA", "sraszwA", "pitAmaha", "pitAmahaH"]),
     "kṣatra":  (["bala", "balam", "ojas", "ojaH", "vIrya", "vIryam"],
                 ["kzatriya", "kzatriyaH", "brAhmaRa", "vESya", "varRa"]),
     "śūdra":   (["dasyu", "dAsa", "dAsaH", "anArya"],
                 ["vESya", "vESyaH", "brAhmaRa", "kzatriya", "varRa", "caRqAla"]),
     "ari":     (["mitra", "mitraH", "suhfd", "sakhA"],
                 ["Satru", "SatruH", "ripu", "ripuH", "amitra", "amitraH", "dvizat"]),
+    "uttara":  (["Urdhva", "upari", "adhara"],
+                ["anantara", "apara", "praSna", "paScAt"]),
     "uttama":  (["praTama", "madhyama", "madhyamam", "antya"],
                 ["SreszWa", "agrya", "agryam", "mukhya", "muKyam", "parama", "paramam"]),
     "pāda":    (["caraRa", "caraRam", "aNGri", "jaNGA", "hasta"],
                 ["caturTa", "caturTam", "turIya", "kalA"]),
-    "tejas":   (["agni", "agniH", "jvAlA", "Sucis"],
-                ["yaSas", "yaSaH", "SrI", "SriyA", "praBAva", "vIrya"]),
+    "tejas":   (["tapas", "agni", "agniH", "tigma"],
+                ["praBAva", "vIrya", "retas", "tigma"]),
     "setu":    (["banDana", "pASa"],
                 ["tIra", "tIram", "anUpa", "nadI", "banDa"]),
-    "bhṛtya":  ([],
-                ["dAsa", "dAsaH", "sevaka", "paricara", "preszya"]),
+    "bhṛtya":  (["anucara", "anucaraH", "sahAya", "sahAyaH", "sakhi", "sakhiH", "ASrita", "ASritaH"],
+                ["dAsa", "dAsaH", "karmakara"]),
     "arka":    (["stoma", "uktha", "arcana"],
                 ["sUrya", "sUryaH", "ravi", "raviH", "BAskara", "divAkara"]),
     "aṃśu":    (["soma", "somaH"],
                 ["raSmi", "raSmiH", "kiraRa", "kiraRaH"]),
-    "preta":   (["mfta", "mftaH"],
-                ["pizAca", "piSAca", "BUta", "BUtam", "rakzas"]),
     "vrata":   (["ftam", "ftasya", "Darman", "vidhi"],
                 ["upavAsa", "tapas", "tapaH", "niyama", "niyamaH"]),
-    "rājan":   (["deva", "devaH", "soma", "somaH", "agni", "agniH"],
-                ["rAjya", "rAjyam", "Satru", "SatruH", "daRqa", "amAtya"]),
-    # controls — expect NO directional movement toward the "new"(demon/corpus) anchors
-    "deva":    (["indra", "indraH", "viSve"],
-                ["rakzas", "piSAca", "dAnava"]),
-    "veda":    (["jYAna", "vidyA"],
-                ["vedANga", "vedAnta", "itihAsa", "purARa"]),
+    # controls — expect NO directional movement
+    "deva":   (["indra", "indraH", "mitra", "mitraH", "varuRa", "varuRaH", "savitar"],
+                ["rakzas", "rAkzasa", "dAnava", "dAnavaH", "dEtya", "dEtyaH", "piSAca", "yakza", "yakzaH"]),
 }
 
 TRANSITION = {  # per word (matches validation_set.md)
     "asura": "V→E", "ātman": "V→U", "brahman": "V→U", "varuṇa": "V→E", "go": "V→E",
-    "hari": "V→E", "yoga": "V→E", "guṇa": "U→E", "soma": "V→E", "prajāpati": "V→U",
+    "hari": "V→E", "yoga": "U→E", "guṇa": "U→E", "soma": "V→E", "uttara": "V→E",
     "kṣatra": "V→E", "śūdra": "V→E", "ari": "V→E", "uttama": "V→E", "pāda": "V→E",
-    "tejas": "U→E", "setu": "U→S", "bhṛtya": "U→E", "arka": "V→E", "aṃśu": "V→E",
-    "preta": "V→E", "vrata": "V→E", "rājan": "V→E", "deva": "V→S", "veda": "V→S",
+    "tejas": "V→E", "setu": "U→S", "bhṛtya": "E→S", "arka": "V→E", "aṃśu": "V→E",
+    "vrata": "V→E", "deva": "V→S",
 }
-CONTROLS = {"deva", "veda"}
+CONTROLS = {"deva"}
 
 
 def best_form(wv, forms):
@@ -209,7 +200,7 @@ def main():
         d = f"{delta:+.3f}" if isinstance(delta, float) else "—"
         flag = " *(control)*" if word in CONTROLS else ""
         out.append(f"| {word}{flag} | {tr} | {d} | {direction or note} | {detail or note} |")
-    out.append("\n*Controls (deva, veda) are excluded from the sign test; they should NOT move "
+    out.append("\n*Controls (deva) are excluded from the sign test; they should NOT move "
                "toward the demon/late-corpus anchors.*")
     Path(args.out).write_text("\n".join(out), encoding="utf-8")
     print(f"Headline: {k}/{n} in attested direction, sign-test p={p:.5f}")

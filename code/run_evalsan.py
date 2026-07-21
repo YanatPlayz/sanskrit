@@ -143,7 +143,7 @@ def main():
     print(f"{'task':<36}{'score':>9}{'coverage':>14}{'cov%':>8}")
     print("-" * 67)
     for r in results:
-        sc = f"{r['score']:.1f}" if r["score"] == r["score"] else "n/a"
+        sc = f"{r['score']:.2f}" if r["score"] == r["score"] else "n/a"
         print(f"{r['name']:<36}{sc:>9}{r['cov']:>14}{r['covpct']:>7.1f}%")
     print("\nNote: every task restricted to IN-VOCAB items; coverage shown. Low coverage "
           "=> score not meaningful (reported for transparency, not as a result).")

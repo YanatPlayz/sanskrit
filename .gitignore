@@ -1,9 +1,39 @@
+# Intermediate pipeline products and the raw/lemma corpus variants.
+# The released sandhi-split corpus lives in corpus/ and is tracked.
 data/
-code/__pycache__/
-code/sanskrit-env/
+
+# Trained embeddings — distributed via Hugging Face, see README.
 models/
-.DS_Store
-code/EvalSan
+
+# Derived analysis outputs; regenerate with drift.py and compare.py.
+analysis/
+results/
+
+# Paper sources.
+paper/
+
+# Third-party benchmark suite; clone from https://github.com/Jivnesh/SanEval
+code/EvalSan/
+
+# Environments and caches
+code/sanskrit-env/
+.venv/
+__pycache__/
+*.pyc
+
+# Working notes, one-off experiments, and superseded scripts.
+# Kept locally; not part of the released pipeline.
 chat.txt
 sanskrit-chat.txt
-paper/refs
+code/control_check.py
+code/another.py
+code/sandhi-split.py
+code/batch-processing.py
+code/ms-processor.py
+code/byt5-test.py
+code/inference.py
+code/test.py
+code/test2.py
+code/epics_simulated_lookup.txt
+
+.DS_Store

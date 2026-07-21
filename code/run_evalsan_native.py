@@ -1,5 +1,5 @@
 """
-run_evalsan_native.py — run EvalSan's OWN evaluation functions, unmodified, on our model.
+run_evalsan_native.py — run EvalSan's OWN evaluation functions, unmodified.
 
 Unlike run_evalsan.py (which restricts to in-vocab items), this calls the EvalSan code
 exactly as published: their evaluate_categorization / evaluate_relatedness_classification

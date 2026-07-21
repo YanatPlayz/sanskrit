@@ -5,17 +5,21 @@ The "grid" = (preprocessing variant) x (architecture) x (era), trained with ONE
 identical hyperparameter config so the only thing that varies is what you study.
 
 Variants -> corpus (all SLP1):
-    raw     data/final/final_slp1/corpus/<era>_corpus.txt   (surface forms)
-    sandhi  data/final/unsandhied/<era>_corpus.txt          (ByT5 sandhi-split)
-    lemma   data/final/lemma/<era>_corpus.txt               (ByT5 lemmatized)
+    raw     data/final/final_slp1/corpus/<era>_corpus.txt   (surface forms; not released)
+    sandhi  corpus/<era>_corpus.txt                         (ByT5 sandhi-split; released)
+    lemma   data/final/lemma/<era>_corpus.txt               (ByT5 lemmatized; not released)
 
 Architectures: fasttext (subword) | word2vec (no subword -> semantic neighbors)
 
 Examples:
-    # word2vec on the sandhi corpus, all 4 eras -> models/w2v-sandhi/<era>/word2vec_<era>.model
+    # primary model: word2vec on the sandhi corpus, all 4 eras
+    #   -> models/w2v-sandhi/<era>/word2vec_<era>.model
     python train.py --variant sandhi --arch word2vec --out_dir ../models/w2v-sandhi
     # matched fasttext control, same frozen config
     python train.py --variant sandhi --arch fasttext --out_dir ../models/ft-sandhi-3-6
+    # the [6,12] n-gram range reported in the paper
+    python train.py --variant sandhi --arch fasttext --min_n 6 --max_n 12 \
+        --out_dir ../models/ft-sandhi-6-12
 
 Output layout is exactly what drift.py expects:
     <out_dir>/<era>/<arch>_<era>.model   (+ params.json, stats.csv)
@@ -33,12 +37,16 @@ REPO = Path(__file__).resolve().parent.parent
 PERIODS = ["vedic", "upanisadic", "epics", "sutras"]
 
 CORPORA = {
+    # The sandhi-split corpus is the one released with this repository. The raw and
+    # lemmatized variants are intermediate products of the preprocessing pipeline and
+    # are not distributed; rebuild them with code/preprocessing/ to reproduce those rows
+    # of the grid, or override the location with --corpus_dir.
     "raw":    "data/final/final_slp1/corpus/{era}_corpus.txt",
-    "sandhi": "data/final/unsandhied/{era}_corpus.txt",
+    "sandhi": "corpus/{era}_corpus.txt",
     "lemma":  "data/final/lemma/{era}_corpus.txt",
 }
 
-# ---- FROZEN CONFIG: identical for every cell of the grid. Cite this in the paper. ----
+# ---- FROZEN CONFIG: identical for every cell of the grid; reported in the paper. ----
 # NB: gensim training with workers>1 is not bit-for-bit reproducible even with seed;
 #     for exact reproducibility set workers=1 (much slower). We match the existing
 #     models' settings (workers=4) and fix seed for near-reproducibility.
@@ -72,6 +80,8 @@ def main():
     ap.add_argument("--variant", required=True, choices=list(CORPORA))
     ap.add_argument("--arch", required=True, choices=["fasttext", "word2vec"])
     ap.add_argument("--out_dir", required=True)
+    ap.add_argument("--corpus_dir", default=None,
+                    help="directory holding <era>_corpus.txt, overriding the variant's default path")
     ap.add_argument("--eras", nargs="+", default=PERIODS)
     ap.add_argument("--min_n", type=int, default=3)   # fasttext only
     ap.add_argument("--max_n", type=int, default=6)   # fasttext only
@@ -91,7 +101,8 @@ def main():
 
     stats = []
     for era in args.eras:
-        corpus = REPO / CORPORA[args.variant].format(era=era)
+        corpus = (Path(args.corpus_dir) / f"{era}_corpus.txt" if args.corpus_dir
+                  else REPO / CORPORA[args.variant].format(era=era))
         if not corpus.exists():
             print(f"  !! missing corpus for {era}: {corpus}")
             continue

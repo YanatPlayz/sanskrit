@@ -123,168 +123,6 @@ VALIDATION = [
 TIER_TITLE = {"A": "Tier A — flagship shifts", "B": "Tier B — well-documented",
               "C": "Controls — expected stable"}
 
-# --- DRAFT analytical verdicts (Claude's read of the neighbor trajectories vs the
-#     documented shift). These are a STARTING POINT to confirm/overturn against
-#     WisdomLib/Monier-Williams — NOT a script computation. Labels: recovered /
-#     partial / failed / stable. Edit freely; they regenerate into the report. ---
-VERDICTS = {
-    # ---------- Tier A ----------
-    "asura": ("recovered (V→E)",
-        "Vedic company is divine/cosmic (mahat 'great', devānām 'of the gods', viṣṇoḥ, ṛtam, "
-        "sāvitram); by the Epic every neighbor is a demon class — dānava, daitya, yakṣa, piśāca, "
-        "kiṃnara, uraga — with sura/vibudha 'gods' appearing only as the contrast term. The "
-        "documented pejoration 'mighty god → demon' is unambiguous in the neighbor shift. "
-        "CAVEAT: the full-span scalar is LOW (proc 0.130 ≈ deva control) because Sūtra asura "
-        "reverts to archaic ritual context (purohitam, bṛhaspatim, kratum, yajña) — read the "
-        "V→E neighbors, not the end-to-end number. Upaniṣadic (n=8/40) thin/noisy."),
-    "ātman": ("recovered (V→U)",
-        "Vedic neighbors carry the bodily/breath sense — apānaḥ 'out-breath', śarīram 'body', "
-        "annasya 'of food', vāyau 'in the air'; the Upaniṣadic set turns abstract/absolute — "
-        "pūrṇaḥ 'full', paraḥ 'supreme', puruṣavidhaḥ 'person-formed', sākṣāt. The documented "
-        "'breath → Self/Absolute' abstraction recovers exactly at the V→U transition. Epic = "
-        "self/mind/disciplined-self (yogī, prajñaḥ, kṛtātmā). Sūtra probe falls to ritual-object "
-        "context (oblique 'ātmani'), less informative."),
-    "brahman": ("recovered (V→U)",
-        "Accent-collapse caveat applies (bráhman vs brahmán merged), yet the trajectory is clean: "
-        "Vedic = liturgy/utterance (sāma 'chant', yajuḥ 'Yajus formula', svareṇa 'with tone', "
-        "upāsīta 'should worship'); Upaniṣadic = the Absolute (param 'supreme', anantam 'infinite', "
-        "ānandam 'bliss', satyena 'truth', vijñānam). The documented 'prayer → Universal Absolute' "
-        "recovers across V→U. Sūtra returns to ritual (prajāpatiḥ, yajamānaḥ, ṛṣayaḥ)."),
-    "varuṇa": ("recovered (V→E)",
-        "Vedic = supreme-Āditya company (mitraḥ, aryamā, bhagaḥ, aditiḥ, savitā, tvaṣṭā); by the "
-        "Epic he sits among the lokapālas with explicit water terms — jaleśvaraḥ 'lord of waters', "
-        "yādasām 'of sea-creatures', plus kuberaḥ, yamaḥ, vaiśravaṇaḥ. The documented demotion "
-        "'supreme sovereign → god of the ocean' is recovered. Sūtra reverts to Vedic-style "
-        "invocation (n=46)."),
-    "go": ("partial (literal stable; metaphors NOT recovered)",
-        "HONEST LIMIT: neighbors stay literal cattle/wealth throughout — Vedic dhenavaḥ 'milch-cows', "
-        "vatsam 'calf', mātaraḥ; Epic vṛṣa 'bull', kṣīra 'milk', goṣṭha 'cowpen', ajāvika "
-        "'goats-and-sheep'; Sūtra livestock/commodity (uṣṭra, mṛga, carma 'hide', suvarṇa). The "
-        "documented metaphorical extensions (earth, rays, senses, stars) are diffuse usages, not a "
-        "coherent neighbor cluster, so they do NOT surface distributionally — only faint hints in "
-        "Vedic (matayaḥ/dhītayaḥ 'thoughts/hymns', the cow=hymn metaphor). Good failure-mode case."),
-    "hari": ("recovered (V→E; via the monkey sense, not Viṣṇu)",
-        "Vedic neighbors are soma-pressing verbs (pavate/punānaḥ/arṣati 'flows/purifies', induḥ "
-        "'soma-drop', pavitre 'in the filter') + the bay steed (vājī, atyaḥ) — exactly the documented "
-        "'tawny → soma, horse'. Epic collapses onto the Rāmāyaṇa monkey-host: vānara, kapi, plavaga, "
-        "ṛkṣa, hanūmān, jāmbavān, yūthapa. The color→animal specialization recovers; the '→Viṣṇu' "
-        "endpoint is documented but SUBDOMINANT here (monkeys dominate). Upaniṣadic n=5 noise."),
-    "yoga": ("recovered (E + S, two senses)",
-        "Vedic 'yoking' too sparse (n=8) to read. Epic recovers the spiritual-discipline technical "
-        "cluster — sāṃkhya, dhyāna 'meditation', samādhi, saṃnyāsa, adhyātma, jñāna; Sūtra recovers "
-        "the *other* documented later sense, Arthaśāstra 'acquisition/securing of property': vetana "
-        "'wages', śulka 'toll', paṇya 'goods', argha 'price', dravya 'property'. Both documented "
-        "later senses recovered, each in the corpus where it lives. Strong."),
-    "guṇa": ("recovered (abstract senses; origin not trackable)",
-        "Correctly ABSENT in Vedic (post-Vedic word). Upaniṣadic = quality/attribute (guṇavat, "
-        "viśiṣṭasya, jñānāt); Epic = virtue + Sāṅkhya (svabhāva, prakṛti, nirguṇa, ṣāḍguṇya, śīla, "
-        "mādhurya); Sūtra = the Vaiśeṣika category, paired with dravya 'substance' (rūpa, varṇa, "
-        "lakṣaṇa, doṣa, hetu). The 'quality → virtue → philosophical-category' arc recovers; the "
-        "original 'cord/strand' sense isn't trackable (word absent where it would appear)."),
-    # ---------- Tier B ----------
-    "soma": ("recovered (V→E, plant→moon)",
-        "Vedic = the Pavamāna ritual drink being pressed/purified (pavasva, pavamāna, pūyamānaḥ, "
-        "indo, kratu); Epic groups soma with the luminaries — indu 'moon', arka, sūrya, candra-context "
-        "(viṣuve), viṣṇu, rudra — recovering the documented plant→moon identification. The "
-        "'substitute-plants' sense is harder to see. Sūtra reverts to soma-ritual (vaiśvadeve, juṣasva)."),
-    "prajāpati": ("recovered (intensification; Vedic baseline already elevated)",
-        "Creator role is present already in Vedic (asṛjata 'emitted/created', prajāḥ 'creatures', "
-        "śraiṣṭhyāya 'for supremacy'), so the documented 'rise' is an INTENSIFICATION rather than an "
-        "origination: by the Epic he is explicitly the supreme self-existent creator — svayaṃbhūḥ, "
-        "lokapitāmahaḥ 'world-grandfather', parameṣṭhī, devadevaḥ. Recovered, but note the gradient "
-        "(not a sharp V→U jump); Upaniṣadic neighbors are mixed/noisy."),
-    "kṣatra": ("recovered (V→E)",
-        "Vedic = abstract might/dominion (balam, vīryam 'valor', ojas 'strength', rāṣṭram 'realm', "
-        "indriyam 'power'); Epic = the warrior class and its duty (kṣātra 'martial', sāṃgrāmikaḥ, "
-        "jīvikā 'livelihood', dharmeṇa/dharme — kṣatra-dharma, anuvrata). The 'might → warrior class' "
-        "shift recovers cleanly. Sūtra reverts to ritual benediction (savitar, bṛhaspatiḥ)."),
-    "śūdra": ("partial (destination clear; origin too sparse)",
-        "Vedic n=6 is too sparse to confirm the documented tribal origin. But the destination "
-        "recovers in the Epic — the four-varṇa system and its occupations: vaiśya, caṇḍāla, viś, plus "
-        "kṛṣi 'agriculture', vāṇijya 'trade', gorakṣa 'cattle-keeping'; Sūtra similar (vaiśya, "
-        "rakṣet). The widening to 'servile/labour class' is confirmed at its endpoint, not its start."),
-    "ari": ("recovered (enemy branch only; 'master' branch NOT recovered)",
-        "Epic and Sūtra are unambiguously 'enemy' — amitra, ripu, śatru, plus the 'foe-crusher' "
-        "compound second-members ari-mardana/-sūdana/-niṣūdana/-karśana — and in Sūtra the "
-        "Arthaśāstra ally-enemy maṇḍala (śatru, saṃdhi 'treaty', mitreṇa). The documented OTHER branch "
-        "('master, lord, pious man') does NOT surface — honest partial recovery of a polysemy split. "
-        "Absent in Upaniṣadic; Vedic n=14 is mixed/ambiguous."),
-    "uttara": ("recovered (multi-sense widening)",
-        "Vedic = spatial/ordinal 'next, upper' (pūrvam pairing, ordinals ṣaṣṭha/caturtha/dvitīya); "
-        "Upaniṣadic = the directional 'northern' sense via the dakṣiṇa 'south' pair; Epic adds "
-        "'reply/subsequent' (prativaktum 'to answer', adhara 'lower' pairing, paścima 'western'). The "
-        "documented 'upper → later/northern/superior' widening tracks across eras. Sūtra = geometric/"
-        "ritual directions."),
-    "uttama": ("recovered (V→E, spatial→evaluative)",
-        "Vedic = positional 'topmost in a series' (madhyamam 'middle', ordinals saptama, metrical "
-        "positions); Epic = the evaluative 'best/supreme' (anuttamam 'unsurpassed', agryam 'foremost', "
-        "mukhyam 'chief', paramam, aprameyam). The documented spatial→evaluative abstraction recovers. "
-        "Sūtra reverts to metrical/positional (prathama, gāyatrī, pāda)."),
-    "pāda": ("recovered (V→U, foot→quarter)",
-        "Vedic = literal foot (dvipādaḥ 'two-footed', body/leg context); Upaniṣadic recovers the "
-        "'quarter (¼)' sense — catuṣpād 'four-quartered', caturthaḥ 'fourth', the cosmic pādas of "
-        "Brahman (sūrya/candra/āditya context, cf. Māṇḍūkya's four pādas); Sūtra = measure/fraction "
-        "(numerals, aṅgula). Epic returns to the body-part list (caraṇa, pāṇi, jaṅghā). Foot→quarter "
-        "clearly recovered."),
-    "tejas": ("recovered (abstraction to splendour/energy)",
-        "Vedic = fire/brilliance + incipient power (dīpyate 'shines', balam, indriyam, brahmavarcasa "
-        "'spiritual lustre'); Epic = majesty/glory/energy (yaśasā 'glory', śriyā 'splendour', vīryeṇa "
-        "'valor', bhāsā 'radiance', raśmivān 'rayed'); Upaniṣadic shows the element + spiritual sense "
-        "(adhyātmam, apaḥ). The documented 'fire/edge → vital energy, majesty' abstraction recovers."),
-    "setu": ("recovered (U→S, bond→bridge)",
-        "Absent Vedic. Upaniṣadic = the figurative cosmic bond/world-boundary and protector "
-        "(bhuvanasya 'of the world', pālayitā 'protector', saṃbhedāya 'for separation', adhipaḥ "
-        "'overlord' — the ātman/brahman-as-dyke image); Epic = the literal causeway/bridge (tīra "
-        "'shore', anūpa 'watery land', the crossing to Laṅkā); Sūtra = embankment/dam in irrigation/"
-        "toll context (bandha, śulka, vaṇij). The 'bond → causeway/dam' concretization recovers."),
-    "bhṛtya": ("recovered (E; dependent→retainer/servant)",
-        "Absent Vedic (post-Vedic). Upaniṣadic n=5 noisy (faint maintenance/origination sense). Epic "
-        "groups bhṛtya with the household's dependents and retainers — amātya 'minister', bāndhava/"
-        "bandhu 'kin', atithi 'guest', svānām 'one's own people', saṃbandhi; Sūtra = servant in legal/"
-        "household affairs (sahāya 'helper', dāra 'wife', vyavahāra). 'Supported dependent → servant' "
-        "recovers at the Epic."),
-    "arka": ("recovered (V→E, hymn→sun)",
-        "Vedic carries the √arc 'praise' sense — arcanti 'they sing', stomāsaḥ 'hymns', ukthebhiḥ "
-        "'recitations', gṛṇānāḥ 'praising', dhītibhiḥ 'with hymns'; Epic is unambiguously the SUN — "
-        "sūrya, ravi, bhāskara, divākara 'day-maker', raśmi 'ray', aṃśu. The documented 'song of "
-        "praise/ray → the sun' shift recovers cleanly. Sūtra n=10 noisy."),
-    "aṃśu": ("recovered (V→E, soma-filament→ray)",
-        "Vedic = the bright soma-stalk/plant (śobhate/dyutānaḥ 'shines', vīrudhām 'of plants', "
-        "svādiṣṭhayā 'sweetest', pūtaḥ 'purified'); Epic = ray of light (raśmi, kiraṇa 'ray', kānti "
-        "'radiance', sūrya, prabhā), with the filament sense lingering in mṛṇāla 'lotus-fibre'. The "
-        "documented soma→ray metaphor recovers. Absent Upaniṣadic; Sūtra n=5 reverts to soma-ritual."),
-    "preta": ("recovered (pejoration)",
-        "Vedic/Upaniṣadic = the deceased and the afterlife journey (punarmṛtyum 're-death', "
-        "candramasam 'the moon' as destination of the dead, kimīdinaḥ 'sorcerers'); Epic groups preta "
-        "with low/cursed states — kāladharma 'death', dasyu 'robber', mleccha, tiryagyoni "
-        "'animal-rebirth', kāpatha 'evil path'; Sūtra = inauspicious (bhaya 'fear', kleśa 'affliction', "
-        "vyādhita 'diseased'). The 'departed → ill-omened ghost' pejoration recovers."),
-    "vrata": ("recovered (V→E, ordinance→vow)",
-        "Vedic = cosmic ordinance / fixed rule (pratiṣṭhita 'established', saṃvatsarāt 'from the year', "
-        "vairāja/pāṅkta metrical structures); Epic = the self-imposed vow/austerity — upavāsa "
-        "'fasting', kaumāra 'chastity-vow', tāpasa 'ascetic', duścara 'hard-to-perform', cīrṇa "
-        "'observed', tyāga 'renunciation'. The documented 'divine ordinance → personal vow/observance' "
-        "shift recovers. Sūtra = named soma-rites (viśvajit, atirātra)."),
-    "rājan": ("recovered (showcase; 3-stage register drift)",
-        "The cleanest trajectory: Vedic king sits among DEITIES — soma, agni, bṛhaspati, vaiśvānara, "
-        "pāvaka (sacral kingship; 'Soma the king'); Epic = named epic sovereigns + narrative address "
-        "(proper names dāśārha/vāhlīka/ṛṣyaśṛṅga, tāta 'dear', janeśvara 'lord of people'); Sūtra = "
-        "Arthaśāstra statecraft/espionage register — śatru 'enemy', preṣayet 'should dispatch', "
-        "atisaṃdhatte 'out-maneuvers', pārṣṇi 'flank', rājya 'realm'. Sacral→heroic→administrative "
-        "fully recovered. (Confirm Kamboja p.208 actually treats rājan; else cite MW + kingship lit.)"),
-    # ---------- Controls ----------
-    "deva": ("STABLE — control passes",
-        "Lowest full-span drift (proc 0.126). Stays 'god / celestial being' in every era — Vedic "
-        "divine collective (pitaraḥ, viśve, aṅgirasaḥ, the deva/asura contest), Epic broadens to "
-        "'celestial beings' generally (gandharva, apsaras, yakṣa, kiṃnara, daitya, dānava) but remains "
-        "supernatural/divine, Sūtra Vedic-style invocation. NO pejoration — confirming the documented "
-        "asymmetry that only Iranian daēva degrades. Good null result."),
-    "veda": ("near-stable → mild specialization (control)",
-        "Behaves as a soft control: Vedic = knowledge/recitation (saṃhitām 'collection', upāste "
-        "'recites', vidvān 'learned'); by the Epic it specializes to the textual canon and its "
-        "curriculum — vedāṅga, vedānta, ṣaḍaṅga, itihāsa, purāṇa, chandas, adhyayana. The documented "
-        "'knowledge → the Veda (corpus)' narrowing is visible but mild; low drift overall."),
-}
 
 
 def best_form(wv, forms):
@@ -356,26 +194,10 @@ def main():
     out.append(f"Model: `{args.models_dir}` · neighbors: top-{args.topk} (full vocab) · "
                f"periods: Vedic → Upaniṣadic → Epic → Sūtra.\n")
 
-    # headline tally from the DRAFT verdicts (documented shifts only, excluding the 2 controls)
     docs = [e for e in VALIDATION if e["tier"] != "C"]
-    def bucket(iast):
-        lab = VERDICTS.get(iast, ("", ""))[0].lower()
-        if lab.startswith("recovered"):
-            return "recovered"
-        if lab.startswith("partial"):
-            return "partial"
-        if lab.startswith("failed"):
-            return "failed"
-        return "unjudged"
-    n_rec = sum(bucket(e["iast"]) == "recovered" for e in docs)
-    n_par = sum(bucket(e["iast"]) == "partial" for e in docs)
-    n_fai = sum(bucket(e["iast"]) == "failed" for e in docs)
-    out.append(f"**DRAFT tally (Claude's read, to confirm):** of {len(docs)} documented shifts — "
-               f"**{n_rec} recovered, {n_par} partial, {n_fai} failed**; "
-               f"+2 controls (deva stable, veda near-stable). "
-               f"Headline candidate: *“embeddings recover {n_rec} of {len(docs)} documented shifts.”* "
-               f"Treat partials/limits (go-metaphor, ari-‘master’ branch, śūdra-origin) as honest "
-               f"method-boundary cases, not failures to hide.\n")
+    out.append(f"{len(docs)} documented shifts and "
+               f"{len(VALIDATION) - len(docs)} controls follow, each with its per-period "
+               f"neighbor trajectory and drift scores. Fill in a verdict per entry.\n")
     out.append("---\n")
 
     current_tier = None
@@ -401,12 +223,7 @@ def main():
             probe = f" _[{iast(form)}]_" if form else ""
             out.append(f"| {ERA_LABEL[era]}{probe} | {n} | {cell} |")
         out.append("")
-        v = VERDICTS.get(e["iast"])
-        if v:
-            out.append(f"**Verdict (DRAFT — Claude's read; confirm vs WisdomLib):** {v[0]}  ")
-            out.append(f"**Notes:** {v[1]}\n")
-        else:
-            out.append("**Verdict (subjective):** ______  ·  **Notes:** ______\n")
+        out.append("**Verdict (subjective):** ______  ·  **Notes:** ______\n")
         out.append("---\n")
 
     Path(args.out).parent.mkdir(parents=True, exist_ok=True)
