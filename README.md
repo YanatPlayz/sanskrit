@@ -68,7 +68,7 @@ Note that gensim's multi-worker training is not bit-for-bit reproducible even wi
 
 ## Analysis
 
-**`train.py`** trains one cell of the grid (preprocessing variant × architecture ×
+`train.py` trains one cell of the grid (preprocessing variant × architecture ×
 period) with fixed hyperparameters.
 
 ```bash
@@ -76,13 +76,13 @@ python train.py --variant sandhi --arch word2vec --out_dir ../models/w2v-sandhi
 python train.py --variant sandhi --arch fasttext --min_n 6 --max_n 12 --out_dir ../models/ft-sandhi-6-12
 ```
 
-**`drift.py`** computes the change metrics for every word trackable across all four periods, and writes per-period neighbor lists for the case-study words.
+`drift.py` computes the change metrics for every word trackable across all four periods, and writes per-period neighbor lists for the case-study words.
 
 ```bash
 python drift.py --models_dir ../models/w2v-sandhi --out_dir ../analysis/w2v-sandhi
 ```
 
-**`recovery_anchor_test.py`** has, for each documented shift, anchor words denoting the old and new senses that are specified *a priori* from the literature. A word counts as moving in its attested direction if
+`recovery_anchor_test.py` has, for each documented shift, anchor words denoting the old and new senses that are specified *a priori* from the literature. A word counts as moving in its attested direction if
 
 ```
 Δ = [cos(w, new) − cos(w, old)]_end − [cos(w, new) − cos(w, old)]_start  >  0
@@ -92,7 +92,7 @@ Two-sided contrast is important as absolute cosine similarities fall as embeddin
 grow more dispersed, so measuring against both senses isolates semantic change from
 changes in the geometry of the space. 
 
-**`recovery_eval.py`** assembles per-period neighbor lists in both SLP1 and IAST, alongside the drift scores.
+`recovery_eval.py` assembles per-period neighbor lists in both SLP1 and IAST, alongside the drift scores.
 
 `run_evalsan.py` and `run_evalsan_native.py` evaluate a single period's embeddings on the
 [EvalSan](https://github.com/Jivnesh/SanEval) intrinsic tasks. The two scripts differ in how they handle OOV items. `run_evalsan_native.py` calls the published EvalSan code, which substitutes the mean vector for OOV words and scores the full test set. `run_evalsan.py` instead restricts every task to its in-vocabulary items and reports coverage next to each score.
