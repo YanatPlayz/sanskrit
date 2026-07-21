@@ -1,7 +1,6 @@
-# Measuring Semantic Change in Sanskrit
+# A Computational Approach to Measuring Semantic Change in Sanskrit Literature
 
-Code and corpus for *A Computational Approach to Measuring Semantic Change in Sanskrit
-Literature*.
+Tanay Agrawal (tanayagrawal31@gmail.com).
 
 Diachronic word embeddings are the standard tool for tracking semantic change, but they
 have been validated almost entirely on modern, high-resource, well-segmented languages.
